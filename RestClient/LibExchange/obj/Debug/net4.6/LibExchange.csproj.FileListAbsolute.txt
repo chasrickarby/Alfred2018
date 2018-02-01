@@ -1,0 +1,14 @@
+C:\Users\mwestover\Documents\hackathon2018\Alfred\Assets\Plugins\net4.6\LibExchange.dll
+C:\Users\mwestover\Documents\hackathon2018\Alfred\Assets\Plugins\net4.6\LibExchange.pdb
+C:\Users\mwestover\Documents\hackathon2018\RestClient\ExchangeClient\LibExchange\obj\Debug\net4.6\LibExchange.csproj.CoreCompileInputs.cache
+C:\Users\mwestover\Documents\hackathon2018\RestClient\ExchangeClient\LibExchange\obj\Debug\net4.6\LibExchange.AssemblyInfoInputs.cache
+C:\Users\mwestover\Documents\hackathon2018\RestClient\ExchangeClient\LibExchange\obj\Debug\net4.6\LibExchange.AssemblyInfo.cs
+C:\Users\mwestover\Documents\hackathon2018\RestClient\ExchangeClient\LibExchange\obj\Debug\net4.6\LibExchange.dll
+C:\Users\mwestover\Documents\hackathon2018\RestClient\ExchangeClient\LibExchange\obj\Debug\net4.6\LibExchange.pdb
+C:\Users\mwestover\Documents\hackathon2018\RestClient\ExchangeClient\LibExchange\obj\Debug\net4.6\LibExchange.csprojResolveAssemblyReference.cache
+C:\Users\mwestover\Documents\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.csprojResolveAssemblyReference.cache
+C:\Users\mwestover\Documents\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.csproj.CoreCompileInputs.cache
+C:\Users\mwestover\Documents\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.AssemblyInfoInputs.cache
+C:\Users\mwestover\Documents\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.AssemblyInfo.cs
+C:\Users\mwestover\Documents\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.dll
+C:\Users\mwestover\Documents\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.pdb

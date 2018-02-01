@@ -11,6 +11,6 @@ namespace LibExchange
 {
     public interface IExchange
     {
-        List<Event> LoadAppointments(DateTime start, DateTime end, string accountName = null);
+        List<ExchangeEvent> LoadAppointments(DateTime start, DateTime end, string accountName = null);
     }
 }

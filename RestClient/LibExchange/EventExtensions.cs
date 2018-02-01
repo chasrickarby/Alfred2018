@@ -12,10 +12,10 @@ namespace LibExchange
 {
     public static class EventExtensions
     {
-        public static DataTable ConvertToDataTable(this List<Event> events)
+        public static DataTable ConvertToDataTable(this List<ExchangeEvent> events)
         {
             DataTable table = new DataTable();
-            PropertyInfo[] eventProperties = typeof(Event).GetProperties();
+            PropertyInfo[] eventProperties = typeof(ExchangeEvent).GetProperties();
 
             foreach (PropertyInfo eventProperty in eventProperties)
             {

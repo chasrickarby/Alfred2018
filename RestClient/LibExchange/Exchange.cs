@@ -14,12 +14,12 @@ namespace LibExchange
 {
     public class Exchange : IExchange
     {
-        private readonly string username = "user@ptc.com";
-        private readonly string password = "password";
+        private readonly string username = "mwestover@ptc.com";
+        private readonly string password = "Googler!37";
         private readonly string exchangeUrl = "https://outlook.office365.com/ews/exchange.asmx";
         private readonly ExchangeVersion exchangeVersion = ExchangeVersion.Exchange2010;
 
-        public List<Event> LoadAppointments(DateTime start, DateTime end, string accountName = null)
+        public List<ExchangeEvent> LoadAppointments(DateTime start, DateTime end, string accountName = null)
         {
             var calendar = GetCalendar(accountName);
             var appointments = GetAppointments(calendar, start, end);
@@ -95,12 +95,12 @@ namespace LibExchange
             return foldersMatchingName;
         }
 
-        private List<Event> ConvertAppointmentsToEvents(FindItemsResults<Appointment> appointments)
+        private List<ExchangeEvent> ConvertAppointmentsToEvents(FindItemsResults<Appointment> appointments)
         {
-            var events = new List<Event>();
+            var events = new List<ExchangeEvent>();
             foreach (var item in appointments)
             {
-                events.Add(new Event
+                events.Add(new ExchangeEvent
                 {
                     Id = item.Id.UniqueId,
                     Subject = item.Subject,
