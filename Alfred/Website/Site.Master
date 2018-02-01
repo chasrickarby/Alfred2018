@@ -1,0 +1,21 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="UTF-8" />
+    <title>Kepware Meeting Room Status</title>
+    <link href="~/Media/layout.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">        
+        <div class="header">
+            <h1>Kepware Meeting Room Status</h1>
+            <div>See scheduled meetings for the day</div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"/>
+        </div>
+    </form>
+</body>
+</html>

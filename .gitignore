@@ -2,3 +2,9 @@
 Alfred/Library/
 
 Alfred/Temp/
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
+/Alfred/packages
+/Alfred/Website/Website.csproj.user
+/.vs/Hackathon2018/v15
+/Alfred/.vs
