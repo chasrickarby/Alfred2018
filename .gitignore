@@ -12,3 +12,15 @@ Alfred/Temp/
 /Alfred/LibExchange/obj
 /Alfred/Website/bin
 /Alfred/Website/obj/Debug
+/RestClient/Website/obj/Debug
+/RestClient/.vs
+/RestClient/LibExchange/obj
+/RestClient/packages
+/RestClient/Website/bin
+/RestClient/Website/obj/Release
+/RestClient/LibExchange/bin/Debug
+/Alfred/obj/Debug
+/Alfred/Assets/Plugins
+/Alfred/Assets/Scripts
+/Alfred/Assets
+/Alfred/obj/Release

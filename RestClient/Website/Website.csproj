@@ -111,7 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibExchange\LibExchange.csproj">
-      <Project>{1f3c07d6-d6d7-4cd4-8a04-1324883fe924}</Project>
+      <Project>{8054149c-856f-46e9-a440-ad958ea90e30}</Project>
       <Name>LibExchange</Name>
     </ProjectReference>
   </ItemGroup>
