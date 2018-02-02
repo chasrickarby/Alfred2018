@@ -8,3 +8,7 @@ Alfred/Temp/
 /Alfred/Website/Website.csproj.user
 /.vs/Hackathon2018/v15
 /Alfred/.vs
+/Alfred/LibExchange/bin/Debug/netstandard2.0
+/Alfred/LibExchange/obj
+/Alfred/Website/bin
+/Alfred/Website/obj/Debug

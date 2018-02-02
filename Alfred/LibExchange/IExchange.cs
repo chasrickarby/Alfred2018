@@ -11,6 +11,8 @@ namespace LibExchange
 {
     public interface IExchange
     {
-        List<Event> LoadAppointments(DateTime start, DateTime end, string accountName = null);
+        IEnumerable<Room> GetAllRoomsDetails();
+        IEnumerable<Room> GetAppointmentsAllRooms(DateTime start, DateTime end);
+        Room GetAppointmentsByRoomAddress(string roomName, DateTime start, DateTime end);
     }
 }

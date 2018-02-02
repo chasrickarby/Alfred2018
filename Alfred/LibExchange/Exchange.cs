@@ -6,8 +6,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Exchange.WebServices.Data;
 
 namespace LibExchange
@@ -18,13 +18,33 @@ namespace LibExchange
         private readonly string password = "password";
         private readonly string exchangeUrl = "https://outlook.office365.com/ews/exchange.asmx";
         private readonly ExchangeVersion exchangeVersion = ExchangeVersion.Exchange2010;
+        private const string roomFilter = "POR/";
 
-        public List<Event> LoadAppointments(DateTime start, DateTime end, string accountName = null)
+        public IEnumerable<Room> GetAllRoomsDetails()
         {
-            var calendar = GetCalendar(accountName);
-            var appointments = GetAppointments(calendar, start, end);
-            return ConvertAppointmentsToEvents(appointments);
+            return GetAllRooms(roomFilter);
         }
+
+        public IEnumerable<Room> GetAppointmentsAllRooms(DateTime start, DateTime end)
+        {
+            var rooms = GetAllRooms(roomFilter).ToArray();
+            for (int i = 0; i < rooms.Length; i++)
+            {
+                GetRoomAppointments(ref rooms[i], start, end);
+            }
+
+            return rooms;
+        }
+
+        public Room GetAppointmentsByRoomAddress(string roomAddress, DateTime start, DateTime end)
+        {
+            var room = new Room
+            {
+                Address = roomAddress
+            };
+            GetRoomAppointments(ref room, start, end);
+            return room;
+        }       
 
         private ExchangeService Service
         {
@@ -39,77 +59,83 @@ namespace LibExchange
             }
         }
 
-        private FindItemsResults<Appointment> GetAppointments(CalendarFolder calendar, DateTime startDate, DateTime endDate)
+        private void GetRoomAppointments(ref Room room, DateTime start, DateTime end)
         {
-            var cView = new CalendarView(startDate, endDate, 50)
+            List<AttendeeInfo> attend = new List<AttendeeInfo>();
+            attend.Clear();
+            attend.Add(room.Address);
+
+            AvailabilityOptions options = new AvailabilityOptions
             {
-                PropertySet = new PropertySet(AppointmentSchema.Subject, AppointmentSchema.Start, AppointmentSchema.End, AppointmentSchema.Id)
+                MaximumSuggestionsPerDay = 48,
             };
 
-            FindItemsResults<Appointment> appointments = null;
-            System.Threading.Tasks.Task tAppointments = System.Threading.Tasks.Task.Run(async () =>
+            GetUserAvailabilityResults userAvailability = null;
+            System.Threading.Tasks.Task tUserAvailability = System.Threading.Tasks.Task.Run(async () =>
             {
-                appointments = await calendar.FindAppointments(cView);
+                userAvailability = await Service.GetUserAvailability(attend, new TimeWindow(start, end), AvailabilityData.FreeBusyAndSuggestions, options);
             });
-            tAppointments.Wait();
+            tUserAvailability.Wait();
 
-            return appointments;
-        }
-
-        private CalendarFolder GetCalendar(string folderName)
-        {
-            CalendarFolder calendar = null;
-            System.Threading.Tasks.Task tCalendar = System.Threading.Tasks.Task.Run(async () =>
+            foreach (AttendeeAvailability attendeeAvailability in userAvailability.AttendeesAvailability)
             {
-                calendar =
-                    string.IsNullOrEmpty(folderName) ?
-                    await FindDefaultCalendarFolder() :
-                    FindNamedCalendarFolder(folderName);
-            });
-            tCalendar.Wait();
-            return calendar;
-        }
-
-        private async Task<CalendarFolder> FindDefaultCalendarFolder() => await CalendarFolder.Bind(Service, WellKnownFolderName.Calendar, new PropertySet());
-
-        private CalendarFolder FindNamedCalendarFolder(string name)
-        {
-            const int pageSize = 100;
-            var view = new FolderView(pageSize)
-            {
-                PropertySet = new PropertySet(BasePropertySet.IdOnly)
-            };
-            view.PropertySet.Add(FolderSchema.DisplayName);
-            view.Traversal = FolderTraversal.Deep;
-
-            SearchFilter sfSearchFilter = new SearchFilter.IsEqualTo(FolderSchema.FolderClass, "IPF.Appointment");
-
-            FindFoldersResults findFolderResults = null;
-            System.Threading.Tasks.Task tFolders = System.Threading.Tasks.Task.Run(async () =>
-            {
-                findFolderResults = await Service.FindFolders(WellKnownFolderName.Root, sfSearchFilter, view);
-            });
-            tFolders.Wait();
-
-            var foldersMatchingName = findFolderResults.Where(f => f.DisplayName == name).Cast<CalendarFolder>().FirstOrDefault();
-            return foldersMatchingName;
-        }
-
-        private List<Event> ConvertAppointmentsToEvents(FindItemsResults<Appointment> appointments)
-        {
-            var events = new List<Event>();
-            foreach (var item in appointments)
-            {
-                events.Add(new Event
+                if (attendeeAvailability.ErrorCode == ServiceError.NoError)
                 {
-                    Id = item.Id.UniqueId,
-                    Subject = item.Subject,
-                    Start = item.Start,
-                    End = item.End
+                    foreach (CalendarEvent calendarEvent in attendeeAvailability.CalendarEvents)
+                    {
+                        Event singleEvent = new Event
+                        {
+                            Start = calendarEvent.StartTime,
+                            End = calendarEvent.EndTime,
+                            Subject = calendarEvent.Details?.Subject,
+                            Id = calendarEvent.Details?.StoreId
+                        };
+                        room.Events.Add(singleEvent);
+                    }
+                }
+            }
+        }
+
+        private IEnumerable<Room> GetAllRooms(string roomFilter)
+        {
+            var roomsList = GetOrganizationRoomsList().Where(x => x.Name.Contains(roomFilter));
+            return GetRoomsFromRoomsList(roomsList);
+        }
+
+        private EmailAddressCollection GetOrganizationRoomsList()
+        {
+            // Return all the room lists in the organization.
+            EmailAddressCollection roomList = null;
+            System.Threading.Tasks.Task tRoomList = System.Threading.Tasks.Task.Run(async () =>
+            {
+                roomList = await Service.GetRoomLists();
+            });
+            tRoomList.Wait();
+
+            return roomList;
+        }
+
+        private IEnumerable<Room> GetRoomsFromRoomsList(IEnumerable<EmailAddress> roomsList)
+        {
+            // Collect all the rooms from every room list
+            var rooms = new Collection<Room>();
+            foreach (var room in roomsList)
+            {
+                System.Threading.Tasks.Task tRoomAddresses = System.Threading.Tasks.Task.Run(async () =>
+                {
+                    foreach (var item in await Service.GetRooms(room))
+                    {
+                        rooms.Add(new Room
+                        {
+                            Name = item.Name,
+                            Address = item.Address
+                        });
+                    }
                 });
+                tRoomAddresses.Wait();
             }
 
-            return events;
+            return rooms;
         }
     }
 }
