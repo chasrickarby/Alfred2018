@@ -8,7 +8,7 @@ using System;
 
 namespace LibExchange
 {
-    public class Event
+    public class ExchangeEvent
     {
         public string Id { get; set; }
         public string Subject { get; set; }
