@@ -4,6 +4,7 @@
 /// </summary>
 ///-----------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 
 namespace LibExchange
@@ -13,5 +14,6 @@ namespace LibExchange
         public string Name { get; set; }
         public string Address { get; set; }
         public List<Event> Events { get; set; } = new List<Event>();
+        public DateTime LastUpdate { get; set; } = new DateTime();
     }
 }

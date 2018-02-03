@@ -99,7 +99,7 @@ namespace LibExchange
         private IEnumerable<Room> GetAllRooms(string roomFilter)
         {
             var roomsList = GetOrganizationRoomsList().Where(x => x.Name.Contains(roomFilter));
-            return GetRoomsFromRoomsList(roomsList);
+            return GetRoomsFromRoomsList(roomsList).Distinct();
         }
 
         private EmailAddressCollection GetOrganizationRoomsList()
@@ -125,6 +125,9 @@ namespace LibExchange
                 {
                     foreach (var item in await Service.GetRooms(room))
                     {
+                        if(rooms.Any(s => s.Address == item.Address))
+                        { continue; }
+
                         rooms.Add(new Room
                         {
                             Name = item.Name,
