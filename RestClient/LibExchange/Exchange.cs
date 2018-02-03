@@ -14,8 +14,8 @@ namespace LibExchange
 {
     public class Exchange : IExchange
     {
-        private readonly string username = "user@ptc.com";
-        private readonly string password = "password";
+        private readonly string username = "sgile@ptc.com";
+        private readonly string password = "bS77d#%B";
         private readonly string exchangeUrl = "https://outlook.office365.com/ews/exchange.asmx";
         private readonly ExchangeVersion exchangeVersion = ExchangeVersion.Exchange2010;
         private const string roomFilter = "POR/";
