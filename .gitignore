@@ -1,13 +1,20 @@
+/.git
+/.vs/*
 
+/Alfred/.vs/*
+/Alfred/Library/*
+/Alfred/Temp/*
+/Alfred/packages/*
+/Alfred/obj/*
+/Alfred/builds/*
 
-Alfred/Library/
+/RestClient/.vs/*
+/RestClient/packages/*
 
-Alfred/Temp/
+/RestClient/Website/bin/*
+/RestClient/Website/obj/*
+/RestClient/Website/*.user
 
-RestClient/Website/bin/
-
-RestClient/Website/obj/
-
-RestClient/LibExchange/obj/
-
-RestClient/\.vs/ExchangeClient/v15/\.suo
+/RestClient/LibExchange/bin/*
+/RestClient/LibExchange/obj/*
+/RestClient/LibExchange/*.user
