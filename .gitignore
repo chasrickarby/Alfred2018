@@ -7,6 +7,7 @@
 /Alfred/packages/*
 /Alfred/obj/*
 /Alfred/builds/*
+/Alfred/Assets/Plugins/*
 
 /RestClient/.vs/*
 /RestClient/packages/*
