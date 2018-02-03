@@ -1,7 +1,0 @@
-C:\Users\Mark\Hackathon2018\hackathon2018\Alfred\Assets\Plugins\net4.6\LibExchange.dll
-C:\Users\Mark\Hackathon2018\hackathon2018\Alfred\Assets\Plugins\net4.6\LibExchange.pdb
-C:\Users\Mark\Hackathon2018\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.csproj.CoreCompileInputs.cache
-C:\Users\Mark\Hackathon2018\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.AssemblyInfoInputs.cache
-C:\Users\Mark\Hackathon2018\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.AssemblyInfo.cs
-C:\Users\Mark\Hackathon2018\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.dll
-C:\Users\Mark\Hackathon2018\hackathon2018\RestClient\LibExchange\obj\Debug\net4.6\LibExchange.pdb
