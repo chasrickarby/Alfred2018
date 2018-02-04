@@ -7,11 +7,11 @@ using Newtonsoft.Json;
 namespace RestServer.Controllers
 {
     [Route("api/[controller]")]
-    public class RoomController : Controller
+    public class RoomsController : Controller
     {
         private Exchange exchange = new Exchange();
 
-        // GET api/room
+        // GET api/rooms
         [HttpGet]
         public string Get()
         {
@@ -20,7 +20,7 @@ namespace RestServer.Controllers
             return json;
         }
 
-        // GET api/room/POR-cr6@ptc.com
+        // GET api/rooms/POR-cr6@ptc.com
         [HttpGet("{address}")]
         public string Get(string address)
         {
