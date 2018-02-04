@@ -1,5 +1,6 @@
 /.git
 /.vs/*
+*.user
 
 /Alfred/.vs/*
 /Alfred/Library/*
@@ -14,8 +15,9 @@
 
 /RestClient/Website/bin/*
 /RestClient/Website/obj/*
-/RestClient/Website/*.user
 
 /RestClient/LibExchange/bin/*
 /RestClient/LibExchange/obj/*
-/RestClient/LibExchange/*.user
+
+/RestServer/bin/*
+/RestServer/obj/*
