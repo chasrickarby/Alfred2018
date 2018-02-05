@@ -132,12 +132,6 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="LibExchange">
- <HintPath>C:/Users/mwestover/Documents/hackathon2018/Alfred/Assets/Plugins/net4.6/LibExchange.dll</HintPath>
- </Reference>
- <Reference Include="Microsoft.Exchange.WebServices.NETStandard">
- <HintPath>C:/Users/mwestover/Documents/hackathon2018/Alfred/Assets/Plugins/net4.6/Microsoft.Exchange.WebServices.NETStandard.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>C:/Users/mwestover/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
  </Reference>

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44188502, g: 0.49083102, b: 0.570787, a: 1}
+  m_IndirectSpecularColor: {r: 0.44188493, g: 0.49083042, b: 0.5707862, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -820,7 +820,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 12
+  m_DynamicPixelsPerUnit: 6
 --- !u!223 &1746887547
 Canvas:
   m_ObjectHideFlags: 0
@@ -848,7 +848,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1746887544}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1.66}
+  m_LocalPosition: {x: 0, y: 0, z: 1.73}
   m_LocalScale: {x: 0.03, y: 0.030000014, z: 0.030000014}
   m_Children:
   - {fileID: 1075208196}
@@ -862,7 +862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.153, y: 0}
+  m_AnchoredPosition: {x: 0.153, y: -0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1746887549
@@ -876,10 +876,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389ab5eb6aff01d4580a96411c0408a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: http://192.168.1.183:51111/api/rooms/POR-cr6@ptc.com
-  Organizer: {fileID: 45113532}
+  Url: http://localhost:51484/api/rooms/POR-cr6@ptc.com
+  OrganizerText: {fileID: 45113532}
   StartText: {fileID: 1245591156}
-  End: {fileID: 1867824736}
+  EndText: {fileID: 1867824736}
 --- !u!1 &1833752616
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,8 +981,8 @@ MonoBehaviour:
   mExtendedTracking: 0
   mAspectRatio: 1.7272727
   mImageTargetType: 0
-  mWidth: 0.57894737
-  mHeight: 1
+  mWidth: 0.06985
+  mHeight: 0.12065
 --- !u!4 &1833752622
 Transform:
   m_ObjectHideFlags: 0
@@ -991,7 +991,7 @@ Transform:
   m_GameObject: {fileID: 1833752616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
   m_Children:
   - {fileID: 1746887548}
   m_Father: {fileID: 0}
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
