@@ -1,6 +1,7 @@
 /.git
 /.vs/*
 *.user
+*.lock.json
 
 /Alfred/.vs/*
 /Alfred/Library/*
@@ -21,3 +22,7 @@
 
 /RestServer/bin/*
 /RestServer/obj/*
+
+/RaspberryPi/.vs/*
+/RaspberryPi/Sensors/bin/*
+/RaspberryPi/Sensors/obj/*
