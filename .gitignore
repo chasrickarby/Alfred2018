@@ -1,7 +1,9 @@
 /.git
 /.vs/*
+*/.vs/*
 *.user
 *.lock.json
+/packages/*
 
 /Alfred/.vs/*
 /Alfred/Library/*
@@ -14,14 +16,14 @@
 /RestClient/.vs/*
 /RestClient/packages/*
 
-/RestClient/Website/bin/*
-/RestClient/Website/obj/*
+/RoomServer/RestServer/bin/*
+/RoomServer/RestServer/obj/*
 
-/RestClient/LibExchange/bin/*
-/RestClient/LibExchange/obj/*
+/RoomServer/LibExchange/bin/*
+/RoomServer/LibExchange/obj/*
 
-/RestServer/bin/*
-/RestServer/obj/*
+/Website/bin/*
+/Website/obj/*
 
 /RaspberryPi/.vs/*
 /RaspberryPi/Sensors/bin/*
