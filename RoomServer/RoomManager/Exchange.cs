@@ -15,7 +15,7 @@ namespace RoomManager
     public class Exchange : IExchange
     {
         private readonly string username = "sgile@ptc.com";
-        private readonly string password = "bS77d#%B";
+        private readonly string password = "U^mj5p5B";
         private readonly string exchangeUrl = "https://outlook.office365.com/ews/exchange.asmx";
         private readonly ExchangeVersion exchangeVersion = ExchangeVersion.Exchange2010;
         private const string roomFilter = "POR/";
@@ -95,7 +95,7 @@ namespace RoomManager
             }
         }
 
-        private string ValidateRoomAddress(string roomAddress)
+        public static string ValidateRoomAddress(string roomAddress)
         {
             if (!roomAddress.EndsWith(addressDomain))
             {

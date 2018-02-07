@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.WebControls;
 using DayPilot.Web.Ui.Enums.Calendar;
 using RoomManager;
 
@@ -19,7 +20,7 @@ namespace Website
         DateTime endDate = DateTime.Today.AddDays(1);
         IEnumerable<Room> allRooms;
         int roomCacheTimeMinutes = 5;
-        string priorityRoomName = "POR/ESC";
+        string priorityRoomName = "POR-cr6@ptc.com";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,9 +31,22 @@ namespace Website
                 allRooms = exchange.GetAllRoomsDetails();
                 Session["AllRooms"] = allRooms;
 
-                var roomNames = allRooms.Select(x => x.Name).Distinct();
+                var roomNames = new List<ListItem>();
+                foreach (var item in allRooms)
+                {
+                    roomNames.Add(new ListItem(item.Name, item.Address));
+                }
+                
                 ddlRooms.DataSource = roomNames;
+                ddlRooms.DataTextField = "Text";
+                ddlRooms.DataValueField = "Value";
                 ddlRooms.DataBind();
+
+                string roomArg = Request.QueryString["room"];
+                if(roomArg != null)
+                {
+                    priorityRoomName = Exchange.ValidateRoomAddress(roomArg);
+                }
             }
             else
             {
@@ -47,7 +61,7 @@ namespace Website
         {
             if (!IsPostBack)
             {
-                var index = ddlRooms.Items.IndexOf(ddlRooms.Items.FindByText(priorityRoomName));
+                var index = ddlRooms.Items.IndexOf(ddlRooms.Items.FindByValue(priorityRoomName));
                 if (index > 0)
                 {
                     ddlRooms.SelectedIndex = index;
@@ -86,7 +100,7 @@ namespace Website
         private Room GetRoom(string roomName, DateTime startDate, DateTime endDate)
         {
             // Data is only valid for a defined time span
-            var requestedRoom = allRooms.Single(s => s.Name == roomName);
+            var requestedRoom = allRooms.Single(s => s.Address.Contains(roomName));
             if (DateTime.Now.Subtract(requestedRoom.LastUpdate).TotalMinutes > roomCacheTimeMinutes)
             {
                 var appointments = exchange.GetAppointmentsByRoomAddress(requestedRoom.Address, startDate, endDate).Events;
