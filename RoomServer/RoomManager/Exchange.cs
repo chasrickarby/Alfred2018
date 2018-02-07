@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Exchange.WebServices.Data;
 
-namespace LibExchange
+namespace RoomManager
 {
     public class Exchange : IExchange
     {
@@ -19,6 +19,7 @@ namespace LibExchange
         private readonly string exchangeUrl = "https://outlook.office365.com/ews/exchange.asmx";
         private readonly ExchangeVersion exchangeVersion = ExchangeVersion.Exchange2010;
         private const string roomFilter = "POR/";
+        private const string addressDomain = "@ptc.com";
 
         public IEnumerable<Room> GetAllRoomsDetails()
         {
@@ -40,11 +41,68 @@ namespace LibExchange
         {
             var room = new Room
             {
-                Address = roomAddress
-            };
+                Address = ValidateRoomAddress(roomAddress)
+        };
             GetRoomAppointments(ref room, start, end);
             return room;
-        }       
+        }
+
+        public Response SendMeetingRequest(string roomAddress, string subject, DateTime start, DateTime end)
+        {
+            try
+            {
+                roomAddress = ValidateRoomAddress(roomAddress);
+                if(string.IsNullOrEmpty(subject))
+                {
+                    subject = "Impromptu meeting";
+                }
+
+                Appointment meeting = new Appointment(Service);
+
+                // Set the properties on the meeting object to create the meeting.
+                meeting.Subject = subject;
+                meeting.Body = $"Meeting auto created by Alfred room manager";
+                meeting.Start = start;
+                meeting.End = end;
+                meeting.Location = roomAddress;
+                meeting.RequiredAttendees.Add(username);
+                meeting.RequiredAttendees.Add("sgile@ptc.com");
+                meeting.RequiredAttendees.Add("mwestover@ptc.com");
+                meeting.RequiredAttendees.Add(roomAddress);
+                meeting.ReminderMinutesBeforeStart = 1;
+
+                // Save the meeting to the Calendar folder and send the meeting request.
+                System.Threading.Tasks.Task tSaveMeeting = System.Threading.Tasks.Task.Run(async () =>
+                {
+                    await meeting.Save(SendInvitationsMode.SendToAllAndSaveCopy);
+                });
+                tSaveMeeting.Wait();
+
+                // Verify that the meeting was created.
+                Item item = null;
+                System.Threading.Tasks.Task tItemBind = System.Threading.Tasks.Task.Run(async () =>
+                {
+                    item = await Item.Bind(Service, meeting.Id, new PropertySet(ItemSchema.Subject));
+                });
+                tItemBind.Wait();
+
+                return new Response("Successfully created meeting", true);
+            }
+            catch (Exception ex)
+            {
+                return new Response($"Failed to create meeting\n{ex.Message}", false);
+            }
+        }
+
+        private string ValidateRoomAddress(string roomAddress)
+        {
+            if (!roomAddress.EndsWith(addressDomain))
+            {
+                roomAddress += addressDomain;
+            }
+
+            return roomAddress;
+        }
 
         private ExchangeService Service
         {
@@ -125,7 +183,7 @@ namespace LibExchange
                 {
                     foreach (var item in await Service.GetRooms(room))
                     {
-                        if(rooms.Any(s => s.Address == item.Address))
+                        if (rooms.Any(s => s.Address == item.Address))
                         { continue; }
 
                         rooms.Add(new Room

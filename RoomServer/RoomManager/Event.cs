@@ -6,7 +6,7 @@
 
 using System;
 
-namespace LibExchange
+namespace RoomManager
 {
     public class Event
     {

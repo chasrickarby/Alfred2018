@@ -14,7 +14,7 @@
     <RootNamespace>Website</RootNamespace>
     <AssemblyName>Website</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -31,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -70,6 +71,8 @@
   <ItemGroup>
     <Content Include="Site.Master" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\WebDeploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -109,9 +112,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RoomServer\LibExchange\LibExchange.csproj">
-      <Project>{77534866-4c24-49da-a954-833590303325}</Project>
-      <Name>LibExchange</Name>
+    <ProjectReference Include="..\RoomServer\RoomManager\RoomManager.csproj">
+      <Project>{b1e9120a-409a-4fbf-86c3-e38f1c786b73}</Project>
+      <Name>RoomManager</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -125,11 +128,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56122</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56122/</IISUrl>
+          <IISUrl>http://localhost:56122/Alfred</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

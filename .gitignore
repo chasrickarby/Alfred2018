@@ -19,8 +19,8 @@
 /RoomServer/RestServer/bin/*
 /RoomServer/RestServer/obj/*
 
-/RoomServer/LibExchange/bin/*
-/RoomServer/LibExchange/obj/*
+/RoomServer/RoomManager/bin/*
+/RoomServer/RoomManager/obj/*
 
 /Website/bin/*
 /Website/obj/*

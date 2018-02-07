@@ -8,15 +8,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DayPilot.Web.Ui.Enums.Calendar;
-using LibExchange;
+using RoomManager;
 
 namespace Website
 {
     public partial class Default : System.Web.UI.Page
     {
         Exchange exchange = new Exchange();
-        DateTime startDate = DateTime.Today.AddDays(2);
-        DateTime endDate = DateTime.Today.AddDays(3);
+        DateTime startDate = DateTime.Today;
+        DateTime endDate = DateTime.Today.AddDays(1);
         IEnumerable<Room> allRooms;
         int roomCacheTimeMinutes = 5;
         string priorityRoomName = "POR/ESC";

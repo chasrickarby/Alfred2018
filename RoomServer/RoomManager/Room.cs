@@ -7,7 +7,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace LibExchange
+namespace RoomManager
 {
     public class Room
     {
