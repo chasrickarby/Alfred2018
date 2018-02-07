@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44188493, g: 0.49083042, b: 0.5707862, a: 1}
+  m_IndirectSpecularColor: {r: 0.44188502, g: 0.49083102, b: 0.570787, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389ab5eb6aff01d4580a96411c0408a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Url: http://alfred-hack.eastus.cloudapp.azure.com/api/rooms/POR-cr6@ptc.com
+  Url: http://alfred-hack.eastus.cloudapp.azure.com/RestServer/api/rooms/POR-cr6
   OrganizerText: {fileID: 45113532}
   StartText: {fileID: 1245591156}
   EndText: {fileID: 1867824736}
