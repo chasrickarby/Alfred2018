@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389ab5eb6aff01d4580a96411c0408a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Url: http://localhost:51484/api/rooms/POR-cr6@ptc.com
+  Url: http://alfred-hack.eastus.cloudapp.azure.com/api/rooms/POR-cr6@ptc.com
   OrganizerText: {fileID: 45113532}
   StartText: {fileID: 1245591156}
   EndText: {fileID: 1867824736}

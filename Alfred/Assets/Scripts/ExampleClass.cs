@@ -6,7 +6,7 @@ using System;
 
 public class ExampleClass : MonoBehaviour
 {
-    public string Url = "http://10.64.105.101:51484/api/rooms/POR-cr6@ptc.com";
+    public string Url = "http://alfred-hack.eastus.cloudapp.azure.com/api/rooms/POR-cr6@ptc.com";
     public Text OrganizerText;
     public Text StartText;
     public Text EndText;
