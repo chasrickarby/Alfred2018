@@ -57,14 +57,15 @@ namespace RoomManager
                     subject = "Impromptu meeting";
                 }
 
-                Appointment meeting = new Appointment(Service);
-
-                // Set the properties on the meeting object to create the meeting.
-                meeting.Subject = subject;
-                meeting.Body = $"Meeting auto created by Alfred room manager";
-                meeting.Start = start;
-                meeting.End = end;
-                meeting.Location = roomAddress;
+                Appointment meeting = new Appointment(Service)
+                {
+                    // Set the properties on the meeting object to create the meeting.
+                    Subject = subject,
+                    Body = $"Meeting auto created by Alfred room manager",
+                    Start = start,
+                    End = end,
+                    Location = roomAddress
+                };
                 meeting.RequiredAttendees.Add(username);
                 meeting.RequiredAttendees.Add("sgile@ptc.com");
                 meeting.RequiredAttendees.Add("mwestover@ptc.com");
