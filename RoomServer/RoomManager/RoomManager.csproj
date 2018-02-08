@@ -48,6 +48,9 @@
     <Compile Include="Room.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors">
+      <Version>5.2.3</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Exchange.WebServices.NETStandard">
       <Version>1.1.2</Version>
     </PackageReference>
