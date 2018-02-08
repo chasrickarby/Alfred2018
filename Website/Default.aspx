@@ -3,12 +3,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server"></asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
+        <asp:Label Text="Location " runat="server"></asp:Label>
+        <asp:DropDownList
+            ID="ddlLocations"
+            runat="server" 
+            OnSelectedIndexChanged="DdlLocations_SelectedIndexChanged"
+            AutoPostBack="True"
+            Width="200px"/>
         <asp:Label Text="Room " runat="server"></asp:Label>
         <asp:DropDownList
             ID="ddlRooms"
             runat="server" 
             OnSelectedIndexChanged="DdlRooms_SelectedIndexChanged"
-            AutoPostBack="True"/>
+            AutoPostBack="True"
+            Width="200px"/>
         <asp:Label ID="lblLastUpdateTime" runat="server" Text="update time"></asp:Label>
     </div>
     <div>
