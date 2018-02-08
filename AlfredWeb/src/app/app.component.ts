@@ -11,5 +11,7 @@ export class AppComponent {
   data: any = null;
 
   constructor(private _http: Http){
+    console.log("Constructor");
+    
   }
 }

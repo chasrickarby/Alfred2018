@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http'
-import { MatList, MatListItem } from '@angular/material';
+import { MatList, MatListItem, MatButton } from '@angular/material';
 import 'rxjs/add/operator/map'
+
+var host = 'http://localhost';
 
 @Component({
   selector: 'calendar-view',
@@ -20,12 +22,21 @@ export class CalendarViewComponent implements OnInit {
   }
 
   private getRooms(){
-    return this._http.get('http://localhost/RestServer/api/rooms')
+    return this._http.get(host + '/RestServer/api/rooms')
                 .map((res: Response) => res.json())
                 .subscribe(data => {
                   this.rooms = data;
                   console.log(this.rooms);
                 })
+  }
 
+  getRoomInfo(roomAddress){
+    var roomInfo;
+    return this._http.get(host + '/RestServer/api/rooms?id=' + roomAddress)
+                .map((res: Response) => res.json())
+                .subscribe(data => {
+                  roomInfo = data;
+                  console.log(roomInfo);
+                })
   }
 }
