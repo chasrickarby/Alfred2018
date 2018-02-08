@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="24bitCR20" size="0.063500 0.073057" />
+    <ImageTarget name="24bitCR19" size="0.063500 0.073514" />
+    <ImageTarget name="24bitCR18" size="0.063500 0.073434" />
+    <ImageTarget name="24bitCR17" size="0.063500 0.073606" />
+    <ImageTarget name="24bitCR16" size="0.063500 0.073239" />
+    <ImageTarget name="24bitCR15" size="0.063500 0.073330" />
+    <ImageTarget name="24bitCR14" size="0.063500 0.073239" />
+    <ImageTarget name="24bitCR13" size="0.063500 0.073422" />
+    <ImageTarget name="24bitCR12" size="0.063500 0.073422" />
+    <ImageTarget name="24bitCR11" size="0.063500 0.073343" />
+    <ImageTarget name="24bitCR10" size="0.063500 0.073606" />
+    <ImageTarget name="24bitCR9" size="0.063500 0.073057" />
+    <ImageTarget name="24bitCR8" size="0.063500 0.073422" />
+    <ImageTarget name="24bitCR7" size="0.063500 0.073057" />
+    <ImageTarget name="24bitCR6" size="0.063500 0.073422" />
+    <ImageTarget name="24bitCR5" size="0.063500 0.072887" />
+    <ImageTarget name="24bitCR4" size="0.063500 0.072785" />
+    <ImageTarget name="24bitCR3" size="0.063500 0.073422" />
+    <ImageTarget name="24bitCR2" size="0.063500 0.072875" />
+    <ImageTarget name="24bitCR1" size="0.063500 0.072966" />
+  </Tracking>
+</QCARConfig>

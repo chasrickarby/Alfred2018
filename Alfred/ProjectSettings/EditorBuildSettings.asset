@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ProtoScene.unity
     guid: d79fceed3c8b8b945b8fdf7fd9186d8e
+  - enabled: 0
+    path: Assets/Scenes/DebugScene.unity
+    guid: ef37bd85c9214d14792474365ee2e3e4
