@@ -1,0 +1,17 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+      Location Picker
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <div id="hamburger-div">
+        <button mat-button class="hamburger-button" (click)="sidenav.toggle()"></button>
+      </div>
+
+      <div id="mainview-div">
+        <h1>Alfred</h1>
+        <h2>Rooms</h2>
+        <calendar-view></calendar-view>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

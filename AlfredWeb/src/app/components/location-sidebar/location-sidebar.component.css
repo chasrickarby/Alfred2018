@@ -1,0 +1,26 @@
+.hamburger-button{
+  background: url(https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-256.png);
+  width: 30px;
+  height: 30px;
+  background-size: 100%;
+  padding: 0;
+  border: none;
+}
+
+#hamburger-div{
+  float: left;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+#mainview-div{
+  float: left;
+}
+
+mat-sidenav-content{
+  background: none;
+}
+
+mat-sidenav-container{
+  background: none;
+}

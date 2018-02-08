@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http'
-import { MatList, MatListItem, MatButton } from '@angular/material';
 import 'rxjs/add/operator/map'
 
 var host = 'http://localhost';
