@@ -14,11 +14,11 @@ namespace RoomManager
 {
     public class Exchange : IExchange
     {
-        private readonly string username = "sgile@ptc.com";
-        private readonly string password = "U^mj5p5B";
+        private readonly string username = "alfredoa@ptc.com";
+        private readonly string password = "Ptc!1234";
         private readonly string exchangeUrl = "https://outlook.office365.com/ews/exchange.asmx";
         private readonly ExchangeVersion exchangeVersion = ExchangeVersion.Exchange2010;
-        private const string roomFilter = "POR/";
+        private const string roomFilter = "";
         private const string addressDomain = "@ptc.com";
 
         public IEnumerable<Room> GetAllRoomsDetails()
