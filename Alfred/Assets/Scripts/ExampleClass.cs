@@ -6,7 +6,7 @@ using System;
 
 public class ExampleClass : MonoBehaviour
 {
-    public string Url = "http://alfred-hack.eastus.cloudapp.azure.com/RestServer/api/rooms/POR-cr6@ptc.com";
+    public string Url = "http://alfred-hack.eastus.cloudapp.azure.com/RestServer/api/rooms/POR-cr6";
     public Text OrganizerText;
     public Text StartText;
     public Text EndText;
@@ -16,15 +16,13 @@ public class ExampleClass : MonoBehaviour
         using (WWW www = new WWW(Url))
         {
             yield return www;
-            Debug.Log(www.text);
-            Debug.Log(www.error);
-            var roomDetails = Room.CreateFromJSON(www.text);
-            Debug.Log(roomDetails.Events.Length);
+            var roomDetails = RoomWithEventData.CreateFromJSON(www.text);
             var startTime = DateTime.Parse(roomDetails.Events[0].Start);
             var endTime = DateTime.Parse(roomDetails.Events[0].End);
             OrganizerText.text = roomDetails.Events[0].Subject;
-            StartText.text = $"{startTime:hh:mm tt}";
-            EndText.text = $"{endTime:hh:mm tt}";
+            StartText.text = startTime.ToString("hh:mm tt");
+            EndText.text = endTime.ToString("hh:mm tt");
+            // EndText.text = $"{endTime.ToLocalTime():hh:mm tt}";
             }
     }
 }

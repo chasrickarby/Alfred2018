@@ -14,11 +14,10 @@ namespace RestServer.Controllers
         static readonly IExchange exchange = new Exchange();
 
         // GET api/rooms/
-        public string GetAllRoomDetails()
+        public IEnumerable<Room> GetAllRoomDetails()
         {
             IEnumerable<Room> roomDetails = exchange.GetAllRoomsDetails();
-            string json = JsonConvert.SerializeObject(roomDetails);
-            return json;
+            return roomDetails;
         }
 
         // GET /RestServer/api/rooms?id=POR-cr6@ptc.com
