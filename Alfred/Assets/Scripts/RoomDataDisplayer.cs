@@ -7,7 +7,6 @@ public class RoomDataDisplayer : MonoBehaviour
 {
     public RoomDetails RoomDetails;
     public RoomEvent[] RoomeEvents;
-    public Text EventCountText;
     public Text RoomNameText;
 
     public void DisplayData()
@@ -23,6 +22,5 @@ public class RoomDataDisplayer : MonoBehaviour
             }
         }
         Debug.Log(string.Format("EventCount: {0}", eventCount));
-        EventCountText.text = eventCount.ToString();
     }
 }
