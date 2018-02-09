@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\RestExchangeClient.cs" />
      <Compile Include="Assets\Scripts\RoomDataDisplayer.cs" />
      <Compile Include="Assets\Scripts\RoomDataFetcher.cs" />
+     <Compile Include="Assets\Scripts\RoomTrackableEventHandler.cs" />
      <Compile Include="Assets\Scripts\RoomWithEventData.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\GameEvent.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\GameEventListener.cs" />
