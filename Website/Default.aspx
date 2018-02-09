@@ -3,13 +3,33 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server"></asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <asp:Label Text="Room " runat="server"></asp:Label>
-        <asp:DropDownList
-            ID="ddlRooms"
-            runat="server" 
-            OnSelectedIndexChanged="DdlRooms_SelectedIndexChanged"
-            AutoPostBack="True"/>
-        <asp:Label ID="lblLastUpdateTime" runat="server" Text="update time"></asp:Label>
+        <table style="width:100%">
+            <tr>
+            <td>
+                <asp:Label Text="Location " runat="server"></asp:Label>
+                <asp:DropDownList
+                    ID="ddlLocations"
+                    runat="server" 
+                    OnSelectedIndexChanged="DdlLocations_SelectedIndexChanged"
+                    AutoPostBack="True"
+                    Width="200px"/>
+                <asp:Label Text="Room " runat="server"></asp:Label>
+                <asp:DropDownList
+                    ID="ddlRooms"
+                    runat="server" 
+                    OnSelectedIndexChanged="DdlRooms_SelectedIndexChanged"
+                    AutoPostBack="True"
+                    Width="200px"/>
+                <asp:Label ID="lblLastUpdateTime" runat="server" Text="update time"></asp:Label>
+            </td>
+            <td align="right">
+                <asp:Label ID="lblTemp" runat="server" Text="Temp"></asp:Label>
+                /
+                <asp:Label ID="lblHumidity" runat="server" Text="Humidity"></asp:Label>
+            </td> 
+            </tr>
+        </table>
+        
     </div>
     <div>
         <DayPilot:DayPilotCalendar

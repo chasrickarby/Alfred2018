@@ -24,3 +24,11 @@ mat-sidenav-content{
 mat-sidenav-container{
   background: none;
 }
+
+#roomDetail{
+  float: left;
+}
+
+#calendarView{
+  float: left;
+}

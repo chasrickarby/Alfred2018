@@ -11,7 +11,12 @@
       <div id="mainview-div">
         <h1>Alfred</h1>
         <h2>Rooms</h2>
-        <calendar-view></calendar-view>
+        <div fxShow fxHide.xs="true" id="calendarView">
+          <calendar-view></calendar-view>
+        </div>
+        <div fxHide fxShow.xs="true" id="roomDetail">
+          <a routerLink="/rooms/:id" routerLinkActive="active"></a>
+        </div>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

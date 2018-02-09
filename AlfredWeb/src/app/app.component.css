@@ -2,3 +2,10 @@ body {
     font-family: Roboto !important;
 }
  
+#calenderView{
+    float:left;
+}
+
+#roomDetail{
+    float: left;
+}
