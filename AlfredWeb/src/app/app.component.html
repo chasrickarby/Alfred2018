@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 <body>
+
     <div id="calendarView">
-        <location-sidebar>Loading...</location-sidebar>
+        <location-sidebar [roomList] = "roomList">Loading...</location-sidebar>
     </div>
-    <router-outlet></router-outlet>
 </body>
 
+<router-outlet></router-outlet>

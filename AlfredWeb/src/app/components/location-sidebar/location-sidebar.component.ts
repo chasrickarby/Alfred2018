@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'location-sidebar',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location-sidebar.component.css']
 })
 export class LocationSidebarComponent implements OnInit {
+  @Input() roomList: any;
 
   constructor() { }
 
