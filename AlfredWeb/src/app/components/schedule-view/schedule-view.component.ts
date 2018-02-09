@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatList, MatListItem } from '@angular/material';
+import { Http, Response, Headers } from '@angular/http';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'schedule-view',
@@ -11,13 +13,19 @@ import { MatList, MatListItem } from '@angular/material';
 
 export class ScheduleViewComponent implements OnInit {
   startDate:Date = null;
+  host = 'http://localhost';
+  roomAddress = '';
 
   timeSlots:Array<String>=new Array<String>();
   startHour = 6;
   endHour = 18;
   week = null;
 
-  constructor() {
+  constructor(private _http: Http, private route: ActivatedRoute ) {
+    this.route.params.subscribe( params => {
+      console.log(params)
+      this.roomAddress = params.id;
+     });
     if (!this.startDate)
       this.startDate = new Date();
 
@@ -30,6 +38,16 @@ for (let h = this.startHour; h <= this.endHour; h++)
   }
   
   ngOnInit() {
+  }
+
+  getRoomSchedule(roomAddress){
+    var roomInfo;
+    this._http.get(this.host + '/RestServer/api/rooms?id=' + roomAddress)
+                .map((res: Response) => res.json())
+                .subscribe(data => {
+                  roomInfo = data;
+                  console.log(roomInfo);
+                })
   }
 
 }
