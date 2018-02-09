@@ -31,15 +31,6 @@ export class CalendarViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  private getRooms(){
-    return this._http.get(host + '/RestServer/api/rooms')
-                .map((res: Response) => res.json())
-                .subscribe(data => {
-                  this.rooms = data;
-                  console.log(this.rooms);
-                })
-  }
-
   loadRoomComponent(roomAddress){
     this.router.navigate(['rooms', roomAddress]);
   }
