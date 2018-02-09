@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using RoomManager;
-using Newtonsoft.Json;
-using System.Text.RegularExpressions;
 
 namespace RestServer.Controllers
 {
     public class RoomsController : ApiController
     {
-        static readonly IExchange exchange = new Exchange();
+        private static readonly IExchange exchange = new Exchange();
+        private static System.Data.SqlClient.SqlConnection conn;
+
+        public RoomsController()
+        {
+            conn = new SqlConnection
+            {
+                ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DbConnectionString"].ConnectionString
+            };
+        }
 
         // GET api/rooms/
         public IEnumerable<Room> GetAllRoomDetails()
@@ -43,9 +52,58 @@ namespace RestServer.Controllers
                 response = Request.CreateResponse(HttpStatusCode.Created, meetingRequestResponse.Message);
             }
 
-            string uri = Url.Link("DefaultApi", new { id, subject, start, end });
+            string uri = Url.Link("DefaultApi", new {id, subject, start, end});
             response.Headers.Location = new Uri(uri);
             return response;
+        }
+
+        // POST /RestServer/api/rooms/UpdateRoomComfort/?roomAddress=POR-cr6&temperature=70&humidity=40
+        public HttpResponseMessage UpdateRoomComfort(string roomAddress, string temperature, string humidity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                string query = string.Empty;
+                if (ExistsInDatabase(roomAddress))
+                {
+                    query = "UPDATE dbo.Room " +
+                            "SET temperature=@Temperature, humidity=@Humidity " +
+                            "WHERE name=@Name";
+                }
+                else
+                {
+                    query = "INSERT INTO dbo.Room (Name, Temperature, Humidity) " +
+                            "VALUES (@Name, @Temperature, @Humidity);";
+                }
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Name", roomAddress);
+                    cmd.Parameters.AddWithValue("@Temperature", Convert.ToInt32(temperature));
+                    cmd.Parameters.AddWithValue("@Humidity", Convert.ToInt32(humidity));
+                    int result = cmd.ExecuteNonQuery();
+                    response = Request.CreateResponse(HttpStatusCode.Created, result);
+                }
+            }
+            catch (Exception ex)
+            {
+                response = Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+            string uri = Url.Link("DefaultApi", new { });
+            response.Headers.Location = new Uri(uri);
+            return response;
+        }
+
+        private bool ExistsInDatabase(string roomAddress)
+        {
+            var query = "SELECT COUNT(*) FROM dbo.Room WHERE [name]=@roomaddress";
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@roomaddress", roomAddress);
+                return (int) cmd.ExecuteScalar() == 1;
+            }
         }
     }
 }
