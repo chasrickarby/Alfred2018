@@ -8,10 +8,22 @@ import 'rxjs/add/operator/map'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  data: any = null;
+  roomList: any = null;
+  host = 'http://localhost';
+
 
   constructor(private _http: Http){
     console.log("Constructor");
-    
+    this.getRooms();
+  }
+
+  private getRooms(){
+    console.log("Getting rooms from app level.");
+    return this._http.get(this.host + '/RestServer/api/rooms')
+                .map((res: Response) => res.json())
+                .subscribe(data => {
+                  this.roomList = data;
+                  console.log(this.roomList);
+                })
   }
 }

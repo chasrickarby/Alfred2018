@@ -6,6 +6,10 @@ body {
     float:left;
 }
 
+#roomSelector{
+    float:left;
+}
+
 #roomDetail{
     float: left;
 }
