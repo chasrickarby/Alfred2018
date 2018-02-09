@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map'
 import { Observable } from 'rxjs/Observable'
@@ -14,7 +14,7 @@ var host = 'http://localhost';
   styleUrls: ['./calendar-view.component.css']
 })
 export class CalendarViewComponent implements OnInit {
-  rooms: any = null;
+  @Input() rooms: any;
 
   cRooms$: Observable<RoomDetailComponent[]>;
   private selectedId = 0;
@@ -22,22 +22,13 @@ export class CalendarViewComponent implements OnInit {
 
   constructor(
     private _http: Http,
-    private router: Router
+    private router: Router,
   ){
     console.log("Getting Rooms");
-    this.getRooms();
+    //this.getRooms();
   }
 
   ngOnInit() {
-  }
-
-  private getRooms(){
-    return this._http.get(host + '/RestServer/api/rooms')
-                .map((res: Response) => res.json())
-                .subscribe(data => {
-                  this.rooms = data;
-                  console.log(this.rooms);
-                })
   }
 
   loadRoomComponent(roomAddress){

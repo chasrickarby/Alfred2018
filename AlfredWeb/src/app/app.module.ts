@@ -1,13 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { MatList, MatListItem, MatListModule, MatButtonModule } from '@angular/material'
+import { MatList, MatListItem, MatListModule, MatButtonModule, MatSelectModule, MatOptionModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { AppComponent } from './app.component';
 import { CalendarViewComponent } from './components/calendar-view/calendar-view.component';
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { ScheduleViewComponent } from './components/schedule-view/schedule-view.component';
+import { RoomSelectorComponent } from './components/room-selector/room-selector.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 const appRoutes: Routes = [
   {
@@ -16,6 +19,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {path: 'rooms', component: CalendarViewComponent},
+  {path: 'rooms', component: RoomSelectorComponent},
   {path: 'rooms/:id', component: ScheduleViewComponent}
 ]
 
@@ -24,13 +28,17 @@ const appRoutes: Routes = [
     AppComponent,
     CalendarViewComponent,
     RoomDetailComponent,
-    ScheduleViewComponent
+    ScheduleViewComponent,
+    RoomSelectorComponent
   ],
   imports: [
     HttpModule,
     BrowserModule,
     MatListModule,
     MatButtonModule,
+    MatOptionModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
     FlexLayoutModule,
     RouterModule.forRoot(
       appRoutes,
