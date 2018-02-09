@@ -1,0 +1,59 @@
+.container{
+    background-color:#FFFFFF;
+    border-top: #e0e0e0 1px solid;
+    border-left: #e0e0e0 1px solid;
+}
+
+.cell{
+    border-right: #e0e0e0 1px solid;
+    border-bottom: #e0e0e0 1px solid;
+}
+
+.headRow{
+    height: 80px;
+}
+
+.timeRow{
+    height: 40px;
+}
+
+.titleDay{
+    font-size: small;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    color: #e0e0e0;
+    margin-top: 3px;
+    margin-left: 3px;
+    margin-bottom: 10px;
+}
+
+.titleDate{
+    font-size: xx-large;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    color: #8a8a8a;
+}
+
+.timeSell{
+    font-size: medium;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    color: #8a8a8a;
+}
+.slot15min{
+    border-right: #e0e0e0 1px solid;
+    height: 10px;
+}
+
+.slot30min{
+    border-right: #e0e0e0 1px solid;
+    border-bottom: #e0e0e0 1px dashed;
+    height: 10px;
+
+}
+.slot45min{
+    border-right: #e0e0e0 1px solid;
+    height: 10px;
+}
+.slot60min{
+    border-right: #e0e0e0 1px solid;
+    border-bottom: #e0e0e0 1px solid;
+    height: 10px;
+}
