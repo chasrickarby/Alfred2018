@@ -22,9 +22,6 @@ export class RoomDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.room$ = this.route.paramMap
-    // .switchMap((params: ParamMap) =>
-    //   this.service.getHero(params.get('id')));
   }
 
   gotoRooms(){

@@ -1,5 +1,5 @@
 <mat-nav-list role="list">
-  <mat-list-item *ngFor="let room of rooms" (click)="getRoomInfo(room.Address)">
+  <mat-list-item *ngFor="let room of rooms" (click)="loadRoomComponent(room.Address)">
     {{room.Name}}
   </mat-list-item>
 </mat-nav-list>

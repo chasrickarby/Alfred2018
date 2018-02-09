@@ -40,18 +40,7 @@ export class CalendarViewComponent implements OnInit {
                 })
   }
 
-  loadRoomComponent(roomInfo){
-    this.router.navigate(['rooms', roomInfo.Address]);
-  }
-
-  getRoomInfo(roomAddress){
-    var roomInfo;
-    this._http.get(host + '/RestServer/api/rooms?id=' + roomAddress)
-                .map((res: Response) => res.json())
-                .subscribe(data => {
-                  roomInfo = data;
-                  console.log(roomInfo);
-                  this.loadRoomComponent(roomInfo);
-                })
+  loadRoomComponent(roomAddress){
+    this.router.navigate(['rooms', roomAddress]);
   }
 }
