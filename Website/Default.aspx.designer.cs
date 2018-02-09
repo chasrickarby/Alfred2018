@@ -40,6 +40,24 @@ namespace Website {
         protected global::System.Web.UI.WebControls.Label lblLastUpdateTime;
         
         /// <summary>
+        /// lblTemp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTemp;
+        
+        /// <summary>
+        /// lblHumidity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHumidity;
+        
+        /// <summary>
         /// DayPilotCalendar1 control.
         /// </summary>
         /// <remarks>

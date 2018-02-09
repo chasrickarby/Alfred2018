@@ -101,6 +101,8 @@ namespace Website
             var room = GetRoom(roomName, _startDate, _endDate);
 
             lblLastUpdateTime.Text = $"Updated {room.LastUpdate.ToString("h:mm:ss tt")}";
+            lblTemp.Text = $"{room.Temperature.ToString()}°F";
+            lblHumidity.Text = $"{room.Humidity.ToString()}%";
             DayPilotCalendar1.DataSource = room.Events;
             DayPilotCalendar1.DataBind();
             DayPilotCalendar1.Update();
@@ -112,9 +114,7 @@ namespace Website
             var requestedRoom = _allRooms.Single(s => s.Address.Contains(roomName));
             if (DateTime.Now.Subtract(requestedRoom.LastUpdate).TotalMinutes > RoomCacheTimeMinutes)
             {
-                var appointments = _exchange.GetAppointmentsByRoomAddress(requestedRoom.Address, startDate, endDate)
-                    .Events;
-                requestedRoom.Events = appointments;
+                requestedRoom = _exchange.GetAppointmentsByRoomAddress(requestedRoom.Address, startDate, endDate);
                 requestedRoom.LastUpdate = DateTime.Now;
             }
 

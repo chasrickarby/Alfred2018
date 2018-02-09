@@ -32,6 +32,7 @@ namespace RoomManager
             for (int i = 0; i < rooms.Length; i++)
             {
                 GetRoomAppointments(ref rooms[i], start, end);
+                GetRoomComfortData(ref rooms[i]);
             }
 
             return rooms;
@@ -44,6 +45,7 @@ namespace RoomManager
                 Address = ValidateRoomAddress(roomAddress)
         };
             GetRoomAppointments(ref room, start, end);
+            GetRoomComfortData(ref room);
             return room;
         }
 
@@ -153,6 +155,13 @@ namespace RoomManager
                     }
                 }
             }
+        }
+
+        private void GetRoomComfortData(ref Room room)
+        {
+            // GET data from REST server
+            room.Temperature = 68;
+            room.Humidity = 42;
         }
 
         private IEnumerable<Room> GetAllRooms(string roomFilter)
