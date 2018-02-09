@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44188493, g: 0.49083042, b: 0.5707862, a: 1}
+  m_IndirectSpecularColor: {r: 0.44188502, g: 0.49083102, b: 0.570787, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -142,6 +142,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2000647958}
+  - {fileID: 612865908}
   m_Father: {fileID: 492907456}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -201,10 +202,84 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 1
   m_Spacing: 0
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!1 &144961114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 144961115}
+  - component: {fileID: 144961117}
+  - component: {fileID: 144961116}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &144961115
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 144961114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 612865908}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &144961116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 144961114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 5
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Button
+--- !u!222 &144961117
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 144961114}
 --- !u!1 &163864530
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +348,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 24bitCR1Material
+  m_Name: AstronautMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -286,7 +361,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9b697c88b2ee46fa819289ce65a1b3a8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9acbce508a2246108d4c0212523d1e6b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -364,7 +439,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f19d44ecf4b14e42bbd8dd1a67d471e, type: 2}
   - {fileID: 11400000, guid: e69d85acab9602046b84ebf594cfa8bb, type: 2}
   - {fileID: 11400000, guid: 54893309ba0861947855a5c855163cc4, type: 2}
-  RoomDetails: {fileID: 11400000, guid: b081cee3870782846aaa97d610e78749, type: 2}
+  RoomDetails: {fileID: 11400000, guid: 40dc4b11ea61b274a9fd076c4d442c69, type: 2}
 --- !u!114 &202136219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +654,128 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!1 &612865907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 612865908}
+  - component: {fileID: 612865911}
+  - component: {fileID: 612865910}
+  - component: {fileID: 612865909}
+  m_Layer: 5
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &612865908
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 612865907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 144961115}
+  m_Father: {fileID: 35148783}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 40, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &612865909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 612865907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 612865910}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 144961116}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Yes!
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &612865910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 612865907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &612865911
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 612865907}
 --- !u!1 &652981368
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,8 +786,8 @@ GameObject:
   m_Component:
   - component: {fileID: 652981374}
   - component: {fileID: 652981373}
-  - component: {fileID: 652981372}
   - component: {fileID: 652981371}
+  - component: {fileID: 652981372}
   - component: {fileID: 652981370}
   - component: {fileID: 652981369}
   m_Layer: 0
@@ -658,15 +855,15 @@ MonoBehaviour:
 --- !u!114 &652981372
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114318519501066100, guid: 4eb71e0a6e17ae142bd8acc5e15ba518,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 652981368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a17a7d26ffe9f64c8114de29a8564ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FetchDataForRoom: {fileID: 11400000, guid: 39a145da716801c468316b55c34386a3, type: 2}
 --- !u!114 &652981373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,15 +876,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 24bitCR1
+  mTrackableName: Astronaut
   mPreserveChildSize: 0
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/DeviceDatabase.xml
+  mDataSetPath: Vuforia/VuforiaMars_Images.xml
   mExtendedTracking: 1
-  mAspectRatio: 1.1490709
+  mAspectRatio: 1.7272727
   mImageTargetType: 0
-  mWidth: 0.0635
-  mHeight: 0.072966
+  mWidth: 0.06985
+  mHeight: 0.12065
 --- !u!4 &652981374
 Transform:
   m_ObjectHideFlags: 0
@@ -697,7 +894,7 @@ Transform:
   m_GameObject: {fileID: 652981368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.072966, y: 0.072966, z: 0.072966}
+  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
   m_Children:
   - {fileID: 2108668091}
   - {fileID: 202136217}
@@ -756,7 +953,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &911269102
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -856,7 +1053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d728e181a64b4294ae8098ae52526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomDetails: {fileID: 11400000, guid: b081cee3870782846aaa97d610e78749, type: 2}
+  RoomDetails: {fileID: 11400000, guid: 40dc4b11ea61b274a9fd076c4d442c69, type: 2}
   RoomeEvents:
   - {fileID: 11400000, guid: a21438fa1a154df439987149d7a3d789, type: 2}
   - {fileID: 11400000, guid: 174542a417862664f82283a8ca932d02, type: 2}
@@ -878,7 +1075,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f19d44ecf4b14e42bbd8dd1a67d471e, type: 2}
   - {fileID: 11400000, guid: e69d85acab9602046b84ebf594cfa8bb, type: 2}
   - {fileID: 11400000, guid: 54893309ba0861947855a5c855163cc4, type: 2}
-  EventCountText: {fileID: 911269101}
+  NameOfLastAccess:
+    UseConstant: 0
+    ConstantValue: 
+    Variable: {fileID: 11400000, guid: 4a9ccd6c864dc704abc5d805c595f242, type: 2}
   RoomNameText: {fileID: 2000647959}
 --- !u!43 &1152689560
 Mesh:
@@ -897,7 +1097,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.43513417, y: 0, z: 0.5}
+      m_Extent: {x: 0.28947368, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -950,7 +1150,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: e8c9debe00000000000000bf000000000000803f000000000000000000000000e8c9debe000000000000003f000000000000803f00000000000000000000803fe8c9de3e00000000000000bf000000000000803f000000000000803f00000000e8c9de3e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: e53594be00000000000000bf000000000000803f000000000000000000000000e53594be000000000000003f000000000000803f00000000000000000000803fe535943e00000000000000bf000000000000803f000000000000803f00000000e535943e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -1206,7 +1406,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f19d44ecf4b14e42bbd8dd1a67d471e, type: 2}
   - {fileID: 11400000, guid: e69d85acab9602046b84ebf594cfa8bb, type: 2}
   - {fileID: 11400000, guid: 54893309ba0861947855a5c855163cc4, type: 2}
-  FetchData: {fileID: 11400000, guid: 39a145da716801c468316b55c34386a3, type: 2}
   NameOfLastAccess:
     UseConstant: 0
     ConstantValue: 

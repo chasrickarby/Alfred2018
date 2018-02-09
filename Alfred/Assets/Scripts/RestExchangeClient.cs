@@ -10,7 +10,6 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
     public const int ServerTimeoutSec = 10;
     public RoomDetails[] RoomDetails;
     public RoomEvent[] RoomEvents;
-    public GameEvent FetchData;
     public StringReference NameOfLastAccess;
     public GameEvent DataReadyToDisplay;
 
@@ -29,7 +28,6 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
     public void GetRoomDetailsByRoomAddress(string roomAddress, RoomDetails roomDetails)
     {
         var url = ServerUrl + RoomInformantionPath + "/" + Regex.Match(roomAddress, @"(.*)@ptc.com").Groups[1].Value;
-        Debug.Log(url);
         StartCoroutine(GetRoomByAddressCoroutine(url, roomDetails));
     }
 
@@ -53,7 +51,6 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
                     Regex.Match(roomInfoCollection.RoomInfoCollection[i].Name, @"/(.*)").Groups[1].Value;
             }
         }
-        FetchData.Raise();
     }
 
     private IEnumerator GetRoomByAddressCoroutine(string url, RoomDetails roomDetails)

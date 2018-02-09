@@ -44,9 +44,9 @@ MonoBehaviour:
       ContainsMagnet: 0
   databaseLoad:
     dataSetsToLoad:
-    - DeviceDatabase
+    - VuforiaMars_Images
     dataSetsToActivate:
-    - DeviceDatabase
+    - VuforiaMars_Images
   videoBackground:
     clippingMode: 0
     numDivisions: 2

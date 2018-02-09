@@ -301,13 +301,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CoroutineWithData.cs" />
-    <Compile Include="Assets\Scripts\ExampleClass.cs" />
     <Compile Include="Assets\Scripts\ExchangeRoomInfoCollection.cs" />
     <Compile Include="Assets\Scripts\ImageTargetManager.cs" />
     <Compile Include="Assets\Scripts\ImageTargetRoomDetails.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IExchangeClient.cs" />
     <Compile Include="Assets\Scripts\RestExchangeClient.cs" />
-    <Compile Include="Assets\Scripts\RoomGuiController.cs" />
+    <Compile Include="Assets\Scripts\RoomDataDisplayer.cs" />
+    <Compile Include="Assets\Scripts\RoomDataFetcher.cs" />
+    <Compile Include="Assets\Scripts\RoomTrackableEventHandler.cs" />
     <Compile Include="Assets\Scripts\RoomWithEventData.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\GameEvent.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\GameEventListener.cs" />
@@ -316,6 +317,7 @@
     <Compile Include="Assets\Scripts\ScriptableObjects\LongReference.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\LongVariable.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\ResettableScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\RoomDetails.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\RoomEvent.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\StringReference.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\StringVariable.cs" />
@@ -329,6 +331,8 @@
     <None Include="Assets\Editor\Vuforia\TargetsetData\VuforiaMars_Object_info.xml" />
     <None Include="Assets\Editor\Vuforia\VuforiaMars_ModelTarget\authoringinfo.xml" />
     <None Include="Assets\Editor\Vuforia\VuforiaMars_VuMark\authoringinfo.xml" />
+    <None Include="Assets\StreamingAssets\Vuforia\DeviceDatabase.xml" />
+    <None Include="Assets\StreamingAssets\Vuforia\TestDatabase.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Images.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_ModelTarget.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Object_OT.xml" />
