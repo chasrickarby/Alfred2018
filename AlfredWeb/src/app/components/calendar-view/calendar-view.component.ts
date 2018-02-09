@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http'
+import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map'
+import { Observable } from 'rxjs/Observable'
+import { Http, Response, Headers } from '@angular/http'
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { RoomDetailComponent } from '../room-detail/room-detail.component';
 
 var host = 'http://localhost';
 
@@ -12,7 +16,14 @@ var host = 'http://localhost';
 export class CalendarViewComponent implements OnInit {
   rooms: any = null;
 
-  constructor(private _http: Http){
+  cRooms$: Observable<RoomDetailComponent[]>;
+  private selectedId = 0;
+  private route: ActivatedRoute
+
+  constructor(
+    private _http: Http,
+    private router: Router
+  ){
     console.log("Getting Rooms");
     this.getRooms();
   }
@@ -29,13 +40,18 @@ export class CalendarViewComponent implements OnInit {
                 })
   }
 
+  loadRoomComponent(roomInfo){
+    this.router.navigate(['rooms', roomInfo.Address]);
+  }
+
   getRoomInfo(roomAddress){
     var roomInfo;
-    return this._http.get(host + '/RestServer/api/rooms?id=' + roomAddress)
+    this._http.get(host + '/RestServer/api/rooms?id=' + roomAddress)
                 .map((res: Response) => res.json())
                 .subscribe(data => {
                   roomInfo = data;
                   console.log(roomInfo);
+                  this.loadRoomComponent(roomInfo);
                 })
   }
 }
