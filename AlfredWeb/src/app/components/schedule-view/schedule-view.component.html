@@ -14,7 +14,7 @@
     <div
       fxLayoutAlign="center center"
       *ngFor="let slot of day.timeSlots; let i = index"
-      [ngClass]="{'slot15min': i%4==0,'slot30min': i%4==1,'slot45min': i%4==2,'slot60min': i%4==3}"
+      [ngClass]="{'slot15min': i%4==0,'slot30min': i%4==1,'slot45min': i%4==2,'slot60min': i%4==3, 'meeting':!slot.isFree()}"
       >
     </div>
   </div>
