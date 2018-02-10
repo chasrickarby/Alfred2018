@@ -22,14 +22,16 @@ public class RoomDataDisplayer : MonoBehaviour
     public Text[] MeetingOrganizerTexts;
     public Canvas LiveDataCanvas;
     public Canvas LoadingCanvas;
+    public int FirstHourOfDay = 8;
+    public int LastHourOfDay = 5;
 
     public void DisplayData()
     {
-        //if (!RoomDetails.Address.Equals(AddressOfLastAccess.Value))
-        //{
-        //    // Not our data, return.
-        //    return;
-        //}
+        if (!RoomDetails.Address.Equals(AddressOfLastAccess.Value))
+        {
+            // Not our data, return.
+            return;
+        }
 
         // We need to pair down our Room Event array to only include Room Events that have data in them
         var eventList = new List<RoomEvent>();
@@ -75,9 +77,11 @@ public class RoomDataDisplayer : MonoBehaviour
         // RoomHumidity.text = RoomDeatails.Humidity.ToString() + "% RH";
 
         // Fill in Meeting graph.
-        for (var i = 0; i < schedule.Count; i++)
+        var startIdx = FirstHourOfDay * 4;
+        var endIdx = LastHourOfDay * 4;
+        for (var i = startIdx; i < endIdx; i++)
         {
-            MeetingImages[i].color = meetingColorDefinition[i];
+            MeetingImages[i - (FirstHourOfDay * 4)].color = meetingColorDefinition[i];
         }
 
         // Fill in the Organizer list
@@ -101,11 +105,11 @@ public class RoomDataDisplayer : MonoBehaviour
     {
         var result = new List<bool>();
         meetingColors = new List<Color>();
-        for (int i = 0; i < 32; i++)
+        for (int i = 0; i < 96; i++)
         {
             meetingColors.Add(NoMeetingColor);
         }
-        for (int i = 0; i < 32; i++)
+        for (int i = 0; i < 96; i++)
         {
             result.Add(false);
         }
@@ -122,14 +126,18 @@ public class RoomDataDisplayer : MonoBehaviour
                 meetingColors[i] = MeetingColors[meetingIdx];
             }
             meetingIdx++;
+            if (meetingIdx == MeetingColors.Length)
+            {
+                meetingIdx = 0;
+            }
         }
         return result;
     }
 
     private int GetIndexFromTime(DateTime time)
     {
-        // idx = ((hr - firstHourOfDay)*idx/hr))+(min/min/idx)
-        return ((time.Hour - 8) * 4) + (time.Minute / 15);
+        // idx = (hr *idx/hr))+(min/min/idx)
+        return (time.Hour * 4) + (time.Minute / 15);
     }
 
     private DateTime GetTimeFromIndex(int idx)
@@ -139,7 +147,7 @@ public class RoomDataDisplayer : MonoBehaviour
         int minToAdd = (idx % 4) * 15;
         //Debug.Log(string.Format("idx: {0}, hoursToAdd: {1}, minutesToAdd: {2}", idx, hoursToAdd, minToAdd));
         
-        return result.AddHours(8).AddHours(hoursToAdd).AddMinutes(minToAdd);
+        return result.AddHours(hoursToAdd).AddMinutes(minToAdd);
     }
 
     private DateTime GetNextAvailableStartTime(List<bool> schedule)

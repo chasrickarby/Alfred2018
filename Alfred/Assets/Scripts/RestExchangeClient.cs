@@ -38,8 +38,8 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
         {
             yield return www;
             var roomInfoCollection = ExchangeRoomInfoCollection.CreateFromJSON(www.text);
-            var filteredCollection = roomInfoCollection.RoomInfoCollection.Where(s => s.Address.StartsWith("POR"));
-            var sortedList = filteredCollection.OrderBy(s => Regex.Match(s.Address, @"cr(\d+)@").Groups[1].Value).ToList();
+            var filteredCollection = roomInfoCollection.RoomInfoCollection.Where(s => s.Address.StartsWith("POR")).ToList();
+            var sortedList = filteredCollection.OrderBy(s => int.Parse(Regex.Match(s.Address, @"-cr(\d+)@").Groups[1].Value)).ToList();
             for (var i = 0; i < sortedList.Count; i++)
             {
                 if (i == RoomDetails.Length)
