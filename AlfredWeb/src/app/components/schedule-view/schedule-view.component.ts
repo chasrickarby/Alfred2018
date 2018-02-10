@@ -14,7 +14,7 @@ export class ScheduleViewComponent implements OnInit {
   roomInfo;
 
   startDate:Date = null;
-  host = 'http://alfred-hack.eastus.cloudapp.azure.com';
+  host = 'http://localhost';
 
   timeSlots:Array<String>=new Array<String>();
   startHour = 6;
@@ -22,7 +22,6 @@ export class ScheduleViewComponent implements OnInit {
   week = null;
     
   constructor(private _http: Http, private route: ActivatedRoute ) {
-    console.log("====ScheduleViewComponent===");
     this.route.params.subscribe( params => {
       console.log(params)
       this.roomAddress = params.id;
@@ -38,10 +37,6 @@ export class ScheduleViewComponent implements OnInit {
 
     this.getRoomSchedule(this.roomAddress);
     this.week = new Week(this.startDate, "day");
-    console.log("====================================");
-    console.log("WEEK");
-    console.log(this.week);
-
     for (let i = 0; i < this.roomInfo.Events.length; i++){
       this.week.days[0].AddMeeting(new Meeting(
         this.roomInfo.Events[i].Subject,
@@ -50,9 +45,6 @@ export class ScheduleViewComponent implements OnInit {
       ));
     }
     this.week.days[0].GetTimeSlots();
-    console.log("====================================");
-    console.log("WEEK");
-    console.log(this.week);
   }
   
   ngOnInit() {
@@ -140,13 +132,8 @@ class Day{
   }
 
   GetTimeSlots(){
-    console.log("==============GetTimeSlots================");
-    console.log(this);
     for (let d = this.start; d <= this.end; d.setMinutes(d.getMinutes() + 15)){
       let meeting = null;
-      console.log(this);
-      console.log(this.meetings);
-      console.log(this.meetings.length);
       for(let i = 0; i < this.meetings.length; i++){
         if(this.meetings[i].isInMeeting(d)){
           meeting = this.meetings[i];
