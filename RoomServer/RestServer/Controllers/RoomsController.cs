@@ -16,9 +16,10 @@ namespace RestServer.Controllers
 
         public RoomsController()
         {
+            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DbConnectionString"].ConnectionString;
             conn = new SqlConnection
             {
-                ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DbConnectionString"].ConnectionString
+                ConnectionString = connectionString
             };
         }
 
@@ -57,30 +58,31 @@ namespace RestServer.Controllers
             return response;
         }
 
-        // POST /RestServer/api/rooms/UpdateRoomComfort/?roomAddress=POR-cr6&temperature=70&humidity=40
-        public HttpResponseMessage UpdateRoomComfort(string roomAddress, string temperature, string humidity)
+        // POST /RestServer/api/rooms/UpdateRoomWeather/?roomAddress=POR-cr6&temperature=70&humidity=40
+        public HttpResponseMessage UpdateRoomWeather(string roomAddress, string temperature, string humidity)
         {
+            var fullAddress = exchange.ValidateRoomAddress(roomAddress);
             HttpResponseMessage response;
             try
             {
                 string query = string.Empty;
-                if (ExistsInDatabase(roomAddress))
+                if (ExistsInDatabase(fullAddress))
                 {
-                    query = "UPDATE dbo.Room " +
+                    query = "UPDATE dbo.RoomWeather " +
                             "SET temperature=@Temperature, humidity=@Humidity " +
                             "WHERE name=@Name";
                 }
                 else
                 {
-                    query = "INSERT INTO dbo.Room (Name, Temperature, Humidity) " +
+                    query = "INSERT INTO dbo.RoomWeather (Name, Temperature, Humidity) " +
                             "VALUES (@Name, @Temperature, @Humidity);";
                 }
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@Name", roomAddress);
-                    cmd.Parameters.AddWithValue("@Temperature", Convert.ToInt32(temperature));
-                    cmd.Parameters.AddWithValue("@Humidity", Convert.ToInt32(humidity));
+                    cmd.Parameters.AddWithValue("@Name", fullAddress);
+                    cmd.Parameters.AddWithValue("@Temperature", double.Parse(temperature));
+                    cmd.Parameters.AddWithValue("@Humidity", double.Parse(humidity));
                     int result = cmd.ExecuteNonQuery();
                     response = Request.CreateResponse(HttpStatusCode.Created, result);
                 }
@@ -90,14 +92,12 @@ namespace RestServer.Controllers
                 response = Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
 
-            string uri = Url.Link("DefaultApi", new { });
-            response.Headers.Location = new Uri(uri);
             return response;
         }
 
         private bool ExistsInDatabase(string roomAddress)
         {
-            var query = "SELECT COUNT(*) FROM dbo.Room WHERE [name]=@roomaddress";
+            var query = "SELECT COUNT(*) FROM dbo.RoomWeather WHERE [name]=@roomaddress";
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 conn.Open();
