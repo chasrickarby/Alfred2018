@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -10,8 +11,9 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
     public const int ServerTimeoutSec = 10;
     public RoomDetails[] RoomDetails;
     public RoomEvent[] RoomEvents;
-    public StringReference NameOfLastAccess;
+    public StringReference AddressOfLastAccess;
     public GameEvent DataReadyToDisplay;
+    public StringReference OfficeLocation;
 
     public bool CreateAppointment(string roomAddress, DateTime startTime, DateTime endTime, string Subject)
     {
@@ -21,7 +23,6 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
     public void GetAllAvailableRoomNames()
     {
         var url = ServerUrl + RoomInformantionPath;
-        Debug.Log(string.Format("GetAllNamesCalled. URL: {0}", url));
         StartCoroutine(GetAllNamesCoroutine(url));
     }
 
@@ -33,22 +34,21 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
 
     private IEnumerator GetAllNamesCoroutine(string url)
     {
-        Debug.Log("Made it here");
         using (WWW www = new WWW(url))
         {
             yield return www;
             var roomInfoCollection = ExchangeRoomInfoCollection.CreateFromJSON(www.text);
-            Array.Sort(roomInfoCollection.RoomInfoCollection);
-            for (var i = 0; i < roomInfoCollection.RoomInfoCollection.Length; i++)
+            var filteredCollection = roomInfoCollection.RoomInfoCollection.Where(s => s.Address.StartsWith("POR"));
+            var sortedList = filteredCollection.OrderBy(s => Regex.Match(s.Address, @"cr(\d+)@").Groups[1].Value).ToList();
+            for (var i = 0; i < sortedList.Count; i++)
             {
                 if (i == RoomDetails.Length)
                 {
                     throw new System.Exception(
                         "Didn't have enough string references for the number of conference rooms found.");
                 }
-                RoomDetails[i].Address = roomInfoCollection.RoomInfoCollection[i].Address;
-                RoomDetails[i].Name =
-                    Regex.Match(roomInfoCollection.RoomInfoCollection[i].Name, @"/(.*)").Groups[1].Value;
+                RoomDetails[i].Address = sortedList[i].Address;
+                RoomDetails[i].Name = Regex.Match(sortedList[i].Name, @"/(.*)").Groups[1].Value;
             }
         }
     }
@@ -61,7 +61,7 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
             // Parse and cache events
             roomDetails.TicksAtLastUpdate = DateTime.Now.Ticks;
             var roomWithEventData = RoomWithEventData.CreateFromJSON(www.text);
-            NameOfLastAccess.Value = roomDetails.Name;
+            AddressOfLastAccess.Value = roomDetails.Address;
             for (int i = 0; i < roomWithEventData.Events.Length; i++)
             {
                 RoomEvents[i].Id = roomWithEventData.Events[i].Id;
