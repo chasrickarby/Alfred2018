@@ -6,9 +6,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using RoomManager;
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
+using System.Web.Http.Cors;
 
 namespace RestServer.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class RoomsController : ApiController
     {
         private static readonly IExchange exchange = new Exchange();
