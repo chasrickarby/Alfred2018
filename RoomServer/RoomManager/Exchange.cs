@@ -49,8 +49,9 @@ namespace RoomManager
         {
             var room = new Room
             {
-                Address = ValidateRoomAddress(roomAddress)
-        };
+                Address = ValidateRoomAddress(roomAddress),
+                LastUpdate = DateTime.Now
+            };
             GetRoomAppointments(ref room, start, end);
             GetRoomWeather(ref room);
             return room;
@@ -225,7 +226,8 @@ namespace RoomManager
                         rooms.Add(new Room
                         {
                             Name = item.Name,
-                            Address = item.Address
+                            Address = item.Address,
+                            LastUpdate = DateTime.Now
                         });
                     }
                 });
