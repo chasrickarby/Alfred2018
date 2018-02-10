@@ -20,7 +20,6 @@ namespace Website
         private readonly DateTime _startDate = DateTime.Today;
         private readonly DateTime _endDate = DateTime.Today.AddDays(1);
         private IEnumerable<Room> _allRooms;
-        private const int RoomCacheTimeMinutes = 1;
         private string _priorityRoomName = "POR-cr6@ptc.com";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -112,11 +111,8 @@ namespace Website
         {
             // Data is only valid for a defined time span
             var requestedRoom = _allRooms.Single(s => s.Address.Contains(roomName));
-            if (DateTime.Now.Subtract(requestedRoom.LastUpdate).TotalMinutes > RoomCacheTimeMinutes)
-            {
-                requestedRoom = _exchange.GetAppointmentsByRoomAddress(requestedRoom.Address, startDate, endDate);
-                requestedRoom.LastUpdate = DateTime.Now;
-            }
+            requestedRoom = _exchange.GetAppointmentsByRoomAddress(requestedRoom.Address, startDate, endDate);
+            requestedRoom.LastUpdate = DateTime.Now;
 
             return requestedRoom;
         }
