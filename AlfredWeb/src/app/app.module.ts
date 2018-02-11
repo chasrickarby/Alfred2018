@@ -1,17 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { MatList, MatListItem, MatListModule, MatButtonModule, MatSelectModule, MatOptionModule } from '@angular/material'
+import { MatList, MatListItem, MatListModule, MatButtonModule, MatSelectModule, MatOptionModule, MatSidenavModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { AppComponent } from './app.component';
 import { CalendarViewComponent } from './components/calendar-view/calendar-view.component';
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { ScheduleViewComponent } from './components/schedule-view/schedule-view.component';
+import { LocationSidebarComponent } from './components/location-sidebar/location-sidebar.component';
 import { RoomSelectorComponent } from './components/room-selector/room-selector.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LocationPickerComponent } from './components/location-picker/location-picker.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
 
 const appRoutes: Routes = [
   {
@@ -28,14 +29,18 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CalendarViewComponent,
+    LocationSidebarComponent,
     RoomDetailComponent,
     ScheduleViewComponent,
-    RoomSelectorComponent
+    RoomSelectorComponent,
+    LocationPickerComponent
   ],
   imports: [
     HttpModule,
     BrowserModule,
     MatListModule,
+    MatSidenavModule,
+    BrowserAnimationsModule,
     MatButtonModule,
     MatOptionModule,
     MatSelectModule,
