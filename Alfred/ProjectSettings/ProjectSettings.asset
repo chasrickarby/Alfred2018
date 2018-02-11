@@ -7,7 +7,7 @@ PlayerSettings:
   productGUID: ef8f500447b488745b256e2eba54fe88
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -161,7 +161,7 @@ PlayerSettings:
     Android: com.ptc.hackathon.alfred
     iOS: com.ptc.alfred
   buildNumber: {}
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -262,7 +262,7 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: fedb2da826edf1b43b0b9988a4687a81, type: 3}
+      m_Icon: {fileID: 2800000, guid: c72b9b58a3736bd41988f9d73afd18ff, type: 3}
       m_Width: 192
       m_Height: 192
       m_Kind: 0
