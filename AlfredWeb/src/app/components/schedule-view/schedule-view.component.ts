@@ -22,7 +22,7 @@ export class ScheduleViewComponent implements OnInit {
 
   timeSlotsDisplay:Array<String>=new Array<String>();
   startHour = 6;
-  endHour = 18;
+  endHour = 21;
   week = null;
 
   isLoaded:Boolean = false;
@@ -135,7 +135,7 @@ class Day{
     this.start = new Date(d);
     this.start.setHours(6);
     this.end = new Date(d);
-    this.end.setHours(18);
+    this.end.setHours(21);
     this.timeSlots = new Array<TimeSlot>();
     this.meetings = new Array<Meeting>();
   }

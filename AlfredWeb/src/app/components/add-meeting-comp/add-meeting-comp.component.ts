@@ -77,22 +77,44 @@ export class AddMeetingCompComponent implements OnInit {
   AddMeeting(){
     let meetingStart = new Date(this.startDate);
     meetingStart.setHours(this.selectedStartTime.hour, this.selectedStartTime.minute,0,0);
-    let meetingStartStr = meetingStart.getFullYear()+"-"+(meetingStart.getMonth()+1)+"-"+meetingStart.getDate()+"T"+meetingStart.getHours()+":"+meetingStart.getMinutes()+":00";
 
     let meetingEnd = new Date(this.startDate);
     meetingEnd.setHours(this.selectedEndTime.hour, this.selectedEndTime.minute,0,0);
-    let meetingEndStr = meetingEnd.getFullYear()+"-"+(meetingEnd.getMonth()+1)+"-"+meetingEnd.getDate()+"T"+meetingEnd.getHours()+":"+meetingEnd.getMinutes()+":00";
-    console.log(this.roomAddress);
-    console.log(meetingStartStr);
-    //console.log(meetingEndStr);
-    
-    //2018-02-06T00:00:00
 
+    let monthStr=(meetingStart.getMonth()+1).toString()
+    if(monthStr.length==1){
+      monthStr="0"+monthStr;
+    }
+    let dateStr = meetingStart.getDate().toString()
+    if(dateStr.length==1){
+      dateStr="0"+dateStr;
+    }
+
+    let strData = meetingStart.getFullYear()+"-"+monthStr+"-"+dateStr+"T"
+    let hs = meetingStart.getHours().toString()
+    if(hs.length==1){
+      hs="0"+hs;
+    }
+    let ms = meetingStart.getMinutes().toString()
+    if(ms.length==1){
+      ms="0"+ms;
+    }
+    let meetingStartStr = strData + hs+":"+ms+":00";
+
+    let he = meetingEnd.getHours().toString()
+    if(he.length==1){
+      he="0"+he;
+    }
+    let me = meetingEnd.getMinutes().toString()
+    if(me.length==1){
+      me="0"+me;
+    }
+    let meetingEndStr = strData + he +":"+me+":00";
     
-    this._http.post(this.host + "/RestServer/api/rooms/CreateMeeting?roomAddress="+this.roomAddress+
+    this._http.post(this.host + "/RestServer/api/rooms/CreateMeeting?id="+this.roomAddress.split("@")[0]+
     "&subject="+this.meetingSubject+
-    "&start="+meetingStart.toISOString()+
-    "&end="+meetingEnd.toISOString(), {})
+    "&start="+meetingStartStr+
+    "&end="+meetingEndStr, {})
     .map((res: Response) => res.json())
     .subscribe(data => {
       this.Close();
