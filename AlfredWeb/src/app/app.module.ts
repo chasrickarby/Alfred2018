@@ -13,6 +13,7 @@ import { RoomSelectorComponent } from './components/room-selector/room-selector.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationPickerComponent } from './components/location-picker/location-picker.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SpinnerService } from './loading-spinner.service';
 
 const appRoutes: Routes = [
   {
@@ -52,7 +53,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [ SpinnerService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

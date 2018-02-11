@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 <body>
-
+    <div id="spinner">
+        <mat-spinner *ngIf="activeSpinner"></mat-spinner>
+    </div>
     <div id="calendarView">
         <location-sidebar [roomList] = "roomList" [locations] = "locations" (callToParent)="updateLocationSetting($event)">Loading...</location-sidebar>
     </div>

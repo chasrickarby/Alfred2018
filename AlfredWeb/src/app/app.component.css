@@ -1,7 +1,10 @@
 body {
     font-family: Roboto !important;
 }
- 
-/* #calenderView{
-    float:left;
-} */
+
+#spinner{
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;    
+}
