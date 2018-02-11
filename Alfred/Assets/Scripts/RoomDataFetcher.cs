@@ -49,7 +49,7 @@ public class RoomDataFetcher : MonoBehaviour {
         var stopWatch = Stopwatch.StartNew();
         while (RoomDetails.Address.Equals(""))
         {
-            if (stopWatch.ElapsedMilliseconds > 5000)
+            if (stopWatch.ElapsedMilliseconds > 10000)
             {
                 ServerCommunicationError.Raise();
                 yield break;

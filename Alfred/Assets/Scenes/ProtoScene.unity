@@ -2236,7 +2236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a17a7d26ffe9f64c8114de29a8564ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FetchDataForRoom: {fileID: 11400000, guid: 70bcf579cad90474783dae4dac35b36f, type: 2}
+  FetchDataForRoom: {fileID: 11400000, guid: 44364e5c24c085a409cd435e9ee7d51f, type: 2}
 --- !u!114 &292785950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7613,13 +7613,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f19d44ecf4b14e42bbd8dd1a67d471e, type: 2}
   - {fileID: 11400000, guid: e69d85acab9602046b84ebf594cfa8bb, type: 2}
   - {fileID: 11400000, guid: 54893309ba0861947855a5c855163cc4, type: 2}
-  RoomDetails: {fileID: 11400000, guid: edc668757e4187f4fb2a398f337cc0a6, type: 2}
+  RoomDetails: {fileID: 11400000, guid: bfdc33aa74c0f064b8d043438f9dda99, type: 2}
   LiveDataCanvas: {fileID: 754524125}
   LoadingCanvas: {fileID: 636826797}
   ErrorCanvas: {fileID: 167897282}
   TimeScaleSpriteGroup: {fileID: 591930693}
   RoomNameUnderlineSprite: {fileID: 2032260864}
-  ServerCommunicationError: {fileID: 0}
+  ServerCommunicationError: {fileID: 11400000, guid: 4e60f449288ae9c4da35c11dffcbf578,
+    type: 2}
 --- !u!114 &1396355404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7632,7 +7633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d76f84a558a89458577c4ab4bb34fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 70bcf579cad90474783dae4dac35b36f, type: 2}
+  Event: {fileID: 11400000, guid: 44364e5c24c085a409cd435e9ee7d51f, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -10515,7 +10516,7 @@ MonoBehaviour:
   m_Script: {fileID: -1826476478, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mWorldCenterMode: 3
+  mWorldCenterMode: 2
   mWorldCenter: {fileID: 0}
 --- !u!81 &2013536376
 AudioListener:
@@ -10647,13 +10648,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d728e181a64b4294ae8098ae52526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomDetails: {fileID: 11400000, guid: edc668757e4187f4fb2a398f337cc0a6, type: 2}
+  RoomDetails: {fileID: 11400000, guid: bfdc33aa74c0f064b8d043438f9dda99, type: 2}
   HighValueColor: {r: 0.8014706, g: 0.14732915, b: 0.14732915, a: 1}
   GoodValueColor: {r: 0.39511245, g: 0.6397059, b: 0.4170415, a: 1}
   LowValueColor: {r: 0.07315097, g: 0.33686155, b: 0.9044118, a: 1}
   LowTempThreshold: 65
   HighTempThreshold: 78
-  LowHumidityThreshold: 40
+  LowHumidityThreshold: 30
   HighHumidityThreshold: 60
   RoomeEvents:
   - {fileID: 11400000, guid: a21438fa1a154df439987149d7a3d789, type: 2}
