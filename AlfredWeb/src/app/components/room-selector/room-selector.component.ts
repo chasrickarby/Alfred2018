@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http'
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
-var host = 'http://localhost';
+var host = 'http://alfred-hack.eastus.cloudapp.azure.com';
 
 @Component({
   selector: 'room-selector',

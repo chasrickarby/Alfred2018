@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -13,7 +15,17 @@ namespace RestServer.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class RoomsController : ApiController
     {
-        static readonly IExchange exchange = new Exchange();
+        private static readonly IExchange exchange = new Exchange();
+        private static System.Data.SqlClient.SqlConnection conn;
+
+        public RoomsController()
+        {
+            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DbConnectionString"].ConnectionString;
+            conn = new SqlConnection
+            {
+                ConnectionString = connectionString
+            };
+        }
 
         // GET api/rooms/
         public IEnumerable<Room> GetAllRoomDetails()
@@ -45,9 +57,57 @@ namespace RestServer.Controllers
                 response = Request.CreateResponse(HttpStatusCode.Created, meetingRequestResponse.Message);
             }
 
-            string uri = Url.Link("DefaultApi", new { id, subject, start, end });
+            string uri = Url.Link("DefaultApi", new {id, subject, start, end});
             response.Headers.Location = new Uri(uri);
             return response;
+        }
+
+        // POST /RestServer/api/rooms/UpdateRoomWeather/?roomAddress=POR-cr6&temperature=70&humidity=40
+        public HttpResponseMessage UpdateRoomWeather(string roomAddress, string temperature, string humidity)
+        {
+            var fullAddress = exchange.ValidateRoomAddress(roomAddress);
+            HttpResponseMessage response;
+            try
+            {
+                string query = string.Empty;
+                if (ExistsInDatabase(fullAddress))
+                {
+                    query = "UPDATE dbo.RoomWeather " +
+                            "SET temperature=@Temperature, humidity=@Humidity " +
+                            "WHERE name=@Name";
+                }
+                else
+                {
+                    query = "INSERT INTO dbo.RoomWeather (Name, Temperature, Humidity) " +
+                            "VALUES (@Name, @Temperature, @Humidity);";
+                }
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Name", fullAddress);
+                    cmd.Parameters.AddWithValue("@Temperature", double.Parse(temperature));
+                    cmd.Parameters.AddWithValue("@Humidity", double.Parse(humidity));
+                    int result = cmd.ExecuteNonQuery();
+                    response = Request.CreateResponse(HttpStatusCode.Created, result);
+                }
+            }
+            catch (Exception ex)
+            {
+                response = Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+            return response;
+        }
+
+        private bool ExistsInDatabase(string roomAddress)
+        {
+            var query = "SELECT COUNT(*) FROM dbo.RoomWeather WHERE [name]=@roomaddress";
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@roomaddress", roomAddress);
+                return (int) cmd.ExecuteScalar() == 1;
+            }
         }
     }
 }

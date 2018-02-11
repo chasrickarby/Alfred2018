@@ -15,5 +15,6 @@ namespace RoomManager
         IEnumerable<Room> GetAppointmentsAllRooms(DateTime start, DateTime end);
         Room GetAppointmentsByRoomAddress(string roomName, DateTime start, DateTime end);
         Response SendMeetingRequest(string roomAddress, string subject, DateTime start, DateTime end);
+        string ValidateRoomAddress(string roomAddress);
     }
 }

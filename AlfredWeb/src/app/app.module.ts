@@ -12,7 +12,7 @@ import { LocationSidebarComponent } from './components/location-sidebar/location
 import { RoomSelectorComponent } from './components/room-selector/room-selector.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationPickerComponent } from './components/location-picker/location-picker.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const appRoutes: Routes = [
   {
@@ -44,6 +44,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatOptionModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     RouterModule.forRoot(
