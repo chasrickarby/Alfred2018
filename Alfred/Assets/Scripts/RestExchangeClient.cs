@@ -14,6 +14,10 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
     public StringReference AddressOfLastAccess;
     public GameEvent DataReadyToDisplay;
     public StringReference OfficeLocation;
+    public int TransmissionRetryLimit;
+    public GameEvent ServerCommunicationError;
+
+    private int retries;
 
     public bool CreateAppointment(string roomAddress, DateTime startTime, DateTime endTime, string Subject)
     {
@@ -37,7 +41,22 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
         using (WWW www = new WWW(url))
         {
             yield return www;
-            var roomInfoCollection = ExchangeRoomInfoCollection.CreateFromJSON(www.text);
+            if (www.error != null)
+            {
+                Debug.Log(string.Format("Server returned error, retrying up to 3 times. Error{0}", www.error));
+                RetryGetAllNames();
+            }
+            ExchangeRoomInfoCollection roomInfoCollection = new ExchangeRoomInfoCollection();
+            try
+            {
+                roomInfoCollection = ExchangeRoomInfoCollection.CreateFromJSON(www.text);
+            }
+            catch (ArgumentException e)
+            {
+                Debug.Log(string.Format("Caught exception parsing server response. retrying up to 3 times. exception message: {0}", e.Message));
+                RetryGetAllNames();
+            }
+            retries = 0;
             var filteredCollection = roomInfoCollection.RoomInfoCollection.Where(s => s.Address.StartsWith("POR")).ToList();
             var sortedList = filteredCollection.OrderBy(s => int.Parse(Regex.Match(s.Address, @"-cr(\d+)@").Groups[1].Value)).ToList();
             for (var i = 0; i < sortedList.Count; i++)
@@ -49,8 +68,31 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
                 }
                 RoomDetails[i].Address = sortedList[i].Address;
                 RoomDetails[i].Name = Regex.Match(sortedList[i].Name, @"/(.*)").Groups[1].Value;
+                RoomDetails[i].Temperature = sortedList[i].Temperature;
+                RoomDetails[i].Humidity = sortedList[i].Humidity;
+                RoomDetails[i].Motion = sortedList[i].Motion;
             }
         }
+    }
+
+    private void RetryGetAllNames()
+    {
+        retries++;
+        if (retries > TransmissionRetryLimit)
+        {
+            ServerCommunicationError.Raise();
+        }
+        GetAllAvailableRoomNames();
+    }
+
+    private void RetryGetRoomByAddress(string url, RoomDetails roomDetails)
+    {
+        retries++;
+        if (retries > TransmissionRetryLimit)
+        {
+            ServerCommunicationError.Raise();
+        }
+        GetRoomDetailsByRoomAddress(url, roomDetails);
     }
 
     private IEnumerator GetRoomByAddressCoroutine(string url, RoomDetails roomDetails)
@@ -58,9 +100,26 @@ public class RestExchangeClient : MonoBehaviour, IExchangeClient
         using (WWW www = new WWW(url))
         {
             yield return www;
+            if (www.error != null)
+            {
+                Debug.Log(string.Format("Server returned error, retrying up to 3 times. Error{0}", www.error));
+                RetryGetRoomByAddress(url, roomDetails);
+            }
+
             // Parse and cache events
+            var roomWithEventData = new RoomWithEventData();
+            try
+            {
+                roomWithEventData = RoomWithEventData.CreateFromJSON(www.text);
+            }
+            catch (ArgumentException e)
+            {
+                Debug.Log(string.Format("Caught exception parsing server response. retrying up to 3 times. exception message: {0}", e.Message));
+                RetryGetRoomByAddress(url, roomDetails);
+            }
+            retries = 0;
+
             roomDetails.TicksAtLastUpdate = DateTime.Now.Ticks;
-            var roomWithEventData = RoomWithEventData.CreateFromJSON(www.text);
             AddressOfLastAccess.Value = roomDetails.Address;
             for (int i = 0; i < roomWithEventData.Events.Length; i++)
             {

@@ -7,6 +7,13 @@ using UnityEngine.UI;
 public class RoomDataDisplayer : MonoBehaviour
 {
     public RoomDetails RoomDetails;
+    public Color HighValueColor;
+    public Color GoodValueColor;
+    public Color LowValueColor;
+    public int LowTempThreshold;
+    public int HighTempThreshold;
+    public int LowHumidityThreshold;
+    public int HighHumidityThreshold;
     public RoomEvent[] RoomeEvents;
     public StringReference AddressOfLastAccess;
     public Text RoomNameText;
@@ -22,6 +29,10 @@ public class RoomDataDisplayer : MonoBehaviour
     public Text[] MeetingOrganizerTexts;
     public Canvas LiveDataCanvas;
     public Canvas LoadingCanvas;
+    public Canvas ErrorCanvas;
+    public Text ErrorMessage;
+    public GameObject TimeScaleSpriteGroup;
+    public GameObject RoomNameUnderlineSprite;
     public int FirstHourOfDay = 8;
     public int LastHourOfDay = 5;
 
@@ -73,8 +84,10 @@ public class RoomDataDisplayer : MonoBehaviour
         }
 
         // Temp and humidity
-        // RoomTempText.text = RoomDetails.Temp.ToString() + " F";
-        // RoomHumidity.text = RoomDeatails.Humidity.ToString() + "% RH";
+        SetTempTextColor();
+        SetHumidityTextColor();   
+        RoomTempText.text = RoomDetails.Temperature.ToString() + " F";
+        RoomHumidityText.text = RoomDetails.Humidity.ToString() + "% RH";
 
         // Fill in Meeting graph.
         var startIdx = FirstHourOfDay * 4;
@@ -93,12 +106,55 @@ public class RoomDataDisplayer : MonoBehaviour
         foreach (var roomEvent in eventList)
         {
             var idx = GetIndexFromTime(roomEvent.StartTime);
-            MeetingOrganizerTexts[idx].text = roomEvent.Subject + " (" + roomEvent.StartTime.ToString("hh:mm") + " - " + roomEvent.EndTime.ToString("hh:mm") + ")";
+            MeetingOrganizerTexts[idx - (FirstHourOfDay * 4)].text = roomEvent.Subject + " (" + roomEvent.StartTime.ToString("hh:mm") + " - " + roomEvent.EndTime.ToString("hh:mm") + ")";
         }
         
         // We're done loading!
         LoadingCanvas.enabled = false;
+        ErrorCanvas.enabled = false;
         LiveDataCanvas.enabled = true;
+        TimeScaleSpriteGroup.SetActive(true);
+        RoomNameUnderlineSprite.SetActive(true);
+    }
+
+    public void ServerCommunicationError()
+    {
+        LoadingCanvas.enabled = false;
+        LiveDataCanvas.enabled = false;
+        ErrorCanvas.enabled = true;
+        ErrorMessage.text = "Server communication error...";
+        TimeScaleSpriteGroup.SetActive(false);
+        RoomNameUnderlineSprite.SetActive(false);
+
+
+    }
+
+    private void SetHumidityTextColor()
+    {
+        if (RoomDetails.Humidity <= LowHumidityThreshold || RoomDetails.Humidity >= HighHumidityThreshold)
+        {
+            RoomHumidityText.color = HighValueColor;
+        }
+        else
+        {
+            RoomHumidityText.color = GoodValueColor;
+        }
+    }
+
+    private void SetTempTextColor()
+    {
+        if (RoomDetails.Temperature <= LowTempThreshold)
+        {
+            RoomTempText.color = LowValueColor;
+        }
+        else if (RoomDetails.Temperature >= HighTempThreshold)
+        {
+            RoomTempText.color = HighValueColor;
+        }
+        else
+        {
+            RoomTempText.color = GoodValueColor;
+        }
     }
 
     private List<bool> GetUsedBlocks(List<RoomEvent> eventList, out List<Color> meetingColors)
