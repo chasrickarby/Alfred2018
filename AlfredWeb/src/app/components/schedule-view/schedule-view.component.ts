@@ -13,7 +13,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 export class ScheduleViewComponent implements OnInit {
-  roomAddress: String = "POR-cr6@ptc.com";
+  roomAddress: String;
   roomInfo;
 
   startDate:Date = null;
@@ -31,6 +31,7 @@ export class ScheduleViewComponent implements OnInit {
       console.log(params)
       this.roomAddress = params.id;
      });
+
     if (!this.startDate){
       this.startDate = new Date();
     }
