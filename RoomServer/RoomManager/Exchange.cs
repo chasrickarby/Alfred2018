@@ -180,6 +180,7 @@ namespace RoomManager
                     {
                         room.Temperature = double.Parse(reader["temperature"].ToString());
                         room.Humidity = double.Parse(reader["humidity"].ToString());
+                        room.Motion = bool.Parse(reader["motion"].ToString());
                     }
                     conn.Close();
                 }
