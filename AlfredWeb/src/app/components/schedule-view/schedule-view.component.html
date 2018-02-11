@@ -1,4 +1,4 @@
-<div class="container" fxLayout="row" fxLayoutWrap>
+<div *ngIf="isLoaded" class="container" fxLayout="row" fxLayoutWrap>
   <div fxFlex="10" fxLayout="column" fxLayoutWrap>
     <div class = "cell headRow" fxLayoutAlign="center center" fxFlex="none"></div>
     <div fxLayout="column">
@@ -18,4 +18,8 @@
       >
     </div>
   </div>
+</div>
+
+<div *ngIf="!isLoaded" class="container" fxLayoutAlign="center center" fxLayoutWrap>
+  <mat-spinner></mat-spinner>
 </div>

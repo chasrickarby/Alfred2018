@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map'
 })
 export class AppComponent {
   roomList: any = null;
-  host = 'http://localhost';
+  host = 'http://alfred-hack.eastus.cloudapp.azure.com';
 
 
   constructor(private _http: Http){

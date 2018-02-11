@@ -10,6 +10,7 @@ import { RouterModule, Routes, Router } from '@angular/router';
 import { ScheduleViewComponent } from './components/schedule-view/schedule-view.component';
 import { RoomSelectorComponent } from './components/room-selector/room-selector.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 const appRoutes: Routes = [
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatOptionModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     RouterModule.forRoot(
