@@ -57,7 +57,7 @@ export class ScheduleViewComponent implements OnInit {
                 .map((res: Response) => res.json())
                 .subscribe(data => {
                   this.roomInfo = data;
-                  console.log(this.roomInfo);
+                  console.log("Room Info: " + this.roomInfo);
                   callback()
                 })
   }

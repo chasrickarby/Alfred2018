@@ -18,7 +18,6 @@ export class RoomSelectorComponent implements OnInit {
     {
       console.log("CTOR Room Selector")
       console.log("Getting Rooms");
-      //this.getRooms();
     }
 
   ngOnInit() {
