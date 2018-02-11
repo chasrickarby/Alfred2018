@@ -7,6 +7,8 @@ namespace RestServer
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            // Enable Cors Configuration
+            config.EnableCors();
 
             // Web API routes
             config.MapHttpAttributeRoutes();

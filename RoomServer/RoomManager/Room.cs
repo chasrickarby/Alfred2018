@@ -17,5 +17,6 @@ namespace RoomManager
         public DateTime LastUpdate { get; set; } = new DateTime();
         public double Temperature { get; set; } = 0;
         public double Humidity { get; set; } = 0;
+        public bool Motion { get; set; } = false;
     }
 }

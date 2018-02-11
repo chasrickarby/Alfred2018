@@ -6,9 +6,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using RoomManager;
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
+using System.Web.Http.Cors;
 
 namespace RestServer.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class RoomsController : ApiController
     {
         private static readonly IExchange exchange = new Exchange();
@@ -58,8 +62,8 @@ namespace RestServer.Controllers
             return response;
         }
 
-        // POST /RestServer/api/rooms/UpdateRoomWeather/?roomAddress=POR-cr6&temperature=70&humidity=40
-        public HttpResponseMessage UpdateRoomWeather(string roomAddress, string temperature, string humidity)
+        // POST /RestServer/api/rooms/UpdateRoomWeather/?roomAddress=POR-cr6&temperature=70&humidity=40&motion=false
+        public HttpResponseMessage UpdateRoomWeather(string roomAddress, string temperature, string humidity, string motion)
         {
             var fullAddress = exchange.ValidateRoomAddress(roomAddress);
             HttpResponseMessage response;
@@ -69,20 +73,23 @@ namespace RestServer.Controllers
                 if (ExistsInDatabase(fullAddress))
                 {
                     query = "UPDATE dbo.RoomWeather " +
-                            "SET temperature=@Temperature, humidity=@Humidity " +
+                            "SET temperature=@Temperature, humidity=@Humidity, motion=@Motion " +
                             "WHERE name=@Name";
                 }
                 else
                 {
-                    query = "INSERT INTO dbo.RoomWeather (Name, Temperature, Humidity) " +
-                            "VALUES (@Name, @Temperature, @Humidity);";
+                    query = "INSERT INTO dbo.RoomWeather (Name, Temperature, Humidity, Motion) " +
+                            "VALUES (@Name, @Temperature, @Humidity, @Motion);";
                 }
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Name", fullAddress);
                     cmd.Parameters.AddWithValue("@Temperature", double.Parse(temperature));
                     cmd.Parameters.AddWithValue("@Humidity", double.Parse(humidity));
+                    cmd.Parameters.AddWithValue("@Motion", Convert.ToBoolean(motion));
+
                     int result = cmd.ExecuteNonQuery();
                     response = Request.CreateResponse(HttpStatusCode.Created, result);
                 }

@@ -1,7 +1,7 @@
 USE [Alfred]
 GO
 
-/****** Object:  Table [dbo].[RoomWeather]    Script Date: 2/10/2018 7:59:17 AM ******/
+/****** Object:  Table [dbo].[RoomWeather]    Script Date: 2/10/2018 7:00:47 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,9 +11,10 @@ GO
 CREATE TABLE [dbo].[RoomWeather](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[name] [nvarchar](100) NOT NULL,
-	[temperature] [nvarchar](100) NULL,
-	[humidity] [nvarchar](100) NULL,
-	[time] [datetime] NOT NULL DEFAULT (getdate()),
+	[temperature] [nvarchar](100) NOT NULL,
+	[humidity] [nvarchar](100) NOT NULL,
+	[time] [datetime] NOT NULL,
+	[motion] [bit] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -26,4 +27,14 @@ UNIQUE NONCLUSTERED
 
 GO
 
+ALTER TABLE [dbo].[RoomWeather] ADD  DEFAULT ((0)) FOR [temperature]
+GO
 
+ALTER TABLE [dbo].[RoomWeather] ADD  DEFAULT ((0)) FOR [humidity]
+GO
+
+ALTER TABLE [dbo].[RoomWeather] ADD  DEFAULT (getdate()) FOR [time]
+GO
+
+ALTER TABLE [dbo].[RoomWeather] ADD  DEFAULT ((0)) FOR [motion]
+GO
