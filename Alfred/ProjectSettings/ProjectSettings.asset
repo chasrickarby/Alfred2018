@@ -161,7 +161,7 @@ PlayerSettings:
     Android: com.ptc.hackathon.alfred
     iOS: com.ptc.alfred
   buildNumber: {}
-  AndroidBundleVersionCode: 2
+  AndroidBundleVersionCode: 3
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1

@@ -10,11 +10,7 @@ public class RoomDataFetcher : MonoBehaviour {
     public StringReference AddressOfLastAccess;
     public RoomEvent[] RoomEvents;
     public RoomDetails RoomDetails;
-    public Canvas LiveDataCanvas;
-    public Canvas LoadingCanvas;
-    public Canvas ErrorCanvas;
-    public GameObject TimeScaleSpriteGroup;
-    public GameObject RoomNameUnderlineSprite;
+    public GameEvent ShowLoadingCanvas;
     public GameEvent ServerCommunicationError;
 
     public void FetchData()
@@ -27,11 +23,7 @@ public class RoomDataFetcher : MonoBehaviour {
             {
                 roomEvent.Reset();
             }
-            LiveDataCanvas.enabled = false;
-            ErrorCanvas.enabled = false;
-            LoadingCanvas.enabled = true;
-            TimeScaleSpriteGroup.SetActive(false);
-            RoomNameUnderlineSprite.SetActive(false);
+            ShowLoadingCanvas.Raise();
 
             // There's a chance that the room details object hasn't been updated yet if the user opens the App and quickly points at a target.
             // If this happens, we should check for room details for up to 5 seconds before reporting an error.

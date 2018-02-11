@@ -27,12 +27,9 @@ public class RoomDataDisplayer : MonoBehaviour
     public Color[] MeetingColors;
     public Color NoMeetingColor;
     public Text[] MeetingOrganizerTexts;
-    public Canvas LiveDataCanvas;
-    public Canvas LoadingCanvas;
-    public Canvas ErrorCanvas;
-    public Text ErrorMessage;
-    public GameObject TimeScaleSpriteGroup;
-    public GameObject RoomNameUnderlineSprite;
+    public StringReference ErrorMessage;
+    public GameEvent ShowDataCanvas;
+    public GameEvent ShowErrorCanvas;
     public int FirstHourOfDay = 8;
     public int LastHourOfDay = 5;
 
@@ -108,25 +105,15 @@ public class RoomDataDisplayer : MonoBehaviour
             var idx = GetIndexFromTime(roomEvent.StartTime);
             MeetingOrganizerTexts[idx - (FirstHourOfDay * 4)].text = roomEvent.Subject + " (" + roomEvent.StartTime.ToString("hh:mm") + " - " + roomEvent.EndTime.ToString("hh:mm") + ")";
         }
-        
+
         // We're done loading!
-        LoadingCanvas.enabled = false;
-        ErrorCanvas.enabled = false;
-        LiveDataCanvas.enabled = true;
-        TimeScaleSpriteGroup.SetActive(true);
-        RoomNameUnderlineSprite.SetActive(true);
+        ShowDataCanvas.Raise();
     }
 
     public void ServerCommunicationError()
     {
-        LoadingCanvas.enabled = false;
-        LiveDataCanvas.enabled = false;
-        ErrorCanvas.enabled = true;
-        ErrorMessage.text = "Server communication error...";
-        TimeScaleSpriteGroup.SetActive(false);
-        RoomNameUnderlineSprite.SetActive(false);
-
-
+        ErrorMessage.Value = "Server communication error...";
+        ShowErrorCanvas.Raise();
     }
 
     private void SetHumidityTextColor()
