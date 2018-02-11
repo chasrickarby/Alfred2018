@@ -102,6 +102,18 @@ namespace Website
             lblLastUpdateTime.Text = $"Updated {room.LastUpdate.ToString("h:mm:ss tt")}";
             lblTemp.Text = $"{room.Temperature.ToString()}°F";
             lblHumidity.Text = $"{room.Humidity.ToString()}%";
+
+            if (room.Motion)
+            {
+                lblMotion.Text = "Occupied";
+                lblMotion.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                lblMotion.Text = "Unoccupied";
+                lblMotion.ForeColor = System.Drawing.Color.Green;
+            }
+
             DayPilotCalendar1.DataSource = room.Events;
             DayPilotCalendar1.DataBind();
             DayPilotCalendar1.Update();

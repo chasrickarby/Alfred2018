@@ -40,6 +40,15 @@ namespace Website {
         protected global::System.Web.UI.WebControls.Label lblLastUpdateTime;
         
         /// <summary>
+        /// lblMotion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMotion;
+        
+        /// <summary>
         /// lblTemp control.
         /// </summary>
         /// <remarks>
