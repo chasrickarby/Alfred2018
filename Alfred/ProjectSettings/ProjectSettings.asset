@@ -294,97 +294,97 @@ PlayerSettings:
   - m_BuildTarget: iPhone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 9c683055674593d4181769d414bb36f1, type: 3}
+      m_Icon: {fileID: 2800000, guid: 1cadfaf65f923414bb10262bc6c9fa4e, type: 3}
       m_Width: 180
       m_Height: 180
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 9c683055674593d4181769d414bb36f1, type: 3}
+      m_Icon: {fileID: 2800000, guid: dfaa8bd1172af684693a37873357358c, type: 3}
       m_Width: 167
       m_Height: 167
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 9c683055674593d4181769d414bb36f1, type: 3}
+      m_Icon: {fileID: 2800000, guid: bce083b67088c8d41b8f95f94a858487, type: 3}
       m_Width: 152
       m_Height: 152
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 9c683055674593d4181769d414bb36f1, type: 3}
+      m_Icon: {fileID: 2800000, guid: 30a912d17c4416446bade6d627943cbc, type: 3}
       m_Width: 144
       m_Height: 144
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 9c683055674593d4181769d414bb36f1, type: 3}
+      m_Icon: {fileID: 2800000, guid: ce47cc3c0da911749a86bc1ea694226e, type: 3}
       m_Width: 120
       m_Height: 120
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 9c683055674593d4181769d414bb36f1, type: 3}
+      m_Icon: {fileID: 2800000, guid: d60769d4a32f5e44bace05244cc1cb96, type: 3}
       m_Width: 114
       m_Height: 114
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 15cfdbaad8284094a8687c18f159b033, type: 3}
+      m_Icon: {fileID: 2800000, guid: 17ef8c19f0379f14786ac97c6a6af90f, type: 3}
       m_Width: 76
       m_Height: 76
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: c846bbaf6cb17cb4caaa318adfaf6845, type: 3}
+      m_Icon: {fileID: 2800000, guid: 2bf68f2cc1a0a1a46baefda2f092e939, type: 3}
       m_Width: 72
       m_Height: 72
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: d8876de16418b22469c7778d18cf5e52, type: 3}
+      m_Icon: {fileID: 2800000, guid: 22bb994712888e6489aa05802ab3aacc, type: 3}
       m_Width: 57
       m_Height: 57
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 9c683055674593d4181769d414bb36f1, type: 3}
+      m_Icon: {fileID: 2800000, guid: ce47cc3c0da911749a86bc1ea694226e, type: 3}
       m_Width: 120
       m_Height: 120
       m_Kind: 3
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 9c683055674593d4181769d414bb36f1, type: 3}
+      m_Icon: {fileID: 2800000, guid: dd5bd4654550b354eaed2e7195e54366, type: 3}
       m_Width: 80
       m_Height: 80
       m_Kind: 3
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 2405a838f425c6b4c9f2e244c20cb1bd, type: 3}
+      m_Icon: {fileID: 2800000, guid: 76fe569c08494cb4bbfd9de665fdfe77, type: 3}
       m_Width: 40
       m_Height: 40
       m_Kind: 3
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 9c683055674593d4181769d414bb36f1, type: 3}
+      m_Icon: {fileID: 2800000, guid: fa798996526d7c041a37ce74990c9c0b, type: 3}
       m_Width: 87
       m_Height: 87
       m_Kind: 1
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: d8876de16418b22469c7778d18cf5e52, type: 3}
+      m_Icon: {fileID: 2800000, guid: b4c253e6e7b3014499dadc4281faa998, type: 3}
       m_Width: 58
       m_Height: 58
       m_Kind: 1
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: aa9d425b192e620439c9a7ae7df6a0cf, type: 3}
+      m_Icon: {fileID: 2800000, guid: 189f573b689411b4cb0f3e587e88a3d5, type: 3}
       m_Width: 29
       m_Height: 29
       m_Kind: 1
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 04544b67cb47a62488d362e2357dd3c7, type: 3}
+      m_Icon: {fileID: 2800000, guid: 841c9becb47123041ad04d5c0dcbb5f6, type: 3}
       m_Width: 60
       m_Height: 60
       m_Kind: 2
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 2405a838f425c6b4c9f2e244c20cb1bd, type: 3}
+      m_Icon: {fileID: 2800000, guid: 76fe569c08494cb4bbfd9de665fdfe77, type: 3}
       m_Width: 40
       m_Height: 40
       m_Kind: 2
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 45cfbffa256282c43ba4f1852ec15905, type: 3}
+      m_Icon: {fileID: 2800000, guid: de68fad9365af50479f36fa7711dae3a, type: 3}
       m_Width: 20
       m_Height: 20
       m_Kind: 2
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 83ea4219ee4efdf4aab95fedb6986511, type: 3}
+      m_Icon: {fileID: 2800000, guid: 70f1fbf146691ed49b6435c522b39bae, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 4
