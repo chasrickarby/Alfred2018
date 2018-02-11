@@ -11,6 +11,7 @@ import { ScheduleViewComponent } from './components/schedule-view/schedule-view.
 import { LocationSidebarComponent } from './components/location-sidebar/location-sidebar.component';
 import { RoomSelectorComponent } from './components/room-selector/room-selector.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LocationPickerComponent } from './components/location-picker/location-picker.component';
 
 
 const appRoutes: Routes = [
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     LocationSidebarComponent,
     RoomDetailComponent,
     ScheduleViewComponent,
-    RoomSelectorComponent
+    RoomSelectorComponent,
+    LocationPickerComponent
   ],
   imports: [
     HttpModule,
