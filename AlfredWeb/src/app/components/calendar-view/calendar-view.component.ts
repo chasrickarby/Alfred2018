@@ -15,6 +15,7 @@ var host = 'http://localhost';
 })
 export class CalendarViewComponent implements OnInit {
   @Input() rooms: any;
+  @Input() locations: any;
 
   cRooms$: Observable<RoomDetailComponent[]>;
   private selectedId = 0;

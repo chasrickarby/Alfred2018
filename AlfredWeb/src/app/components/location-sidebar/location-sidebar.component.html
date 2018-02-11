@@ -1,6 +1,6 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-      <location-picker></location-picker>>
+      <location-picker [locations]="_locations" (myEvent)="eventResult($event)"></location-picker>
     </mat-sidenav>
   
     <mat-sidenav-content>

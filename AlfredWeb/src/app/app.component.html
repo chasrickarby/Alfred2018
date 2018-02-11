@@ -2,6 +2,6 @@
 <body>
 
     <div id="calendarView">
-        <location-sidebar [roomList] = "roomList">Loading...</location-sidebar>
+        <location-sidebar [roomList] = "roomList" [locations] = "locations" (callToParent)="updateLocationSetting($event)">Loading...</location-sidebar>
     </div>
 </body>
