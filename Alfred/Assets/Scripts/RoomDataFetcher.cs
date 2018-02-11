@@ -9,12 +9,14 @@ public class RoomDataFetcher : MonoBehaviour {
     public StringReference NameOfLastAccess;
     public RoomEvent[] RoomEvents;
     public RoomDetails RoomDetails;
+    public Canvas LiveDataCanvas;
+    public Canvas LoadingCanvas;
 
     private RoomWithEventData roomInfo;
 
     public void FetchData()
     {
-        if (!NameOfLastAccess.Value.Equals(RoomDetails.Name) || (DateTime.Now.Ticks - RoomDetails.TicksAtLastUpdate) / 10000000 > RefreshThresholdSec)
+        if (!NameOfLastAccess.Value.Equals(RoomDetails.Address) || (DateTime.Now.Ticks - RoomDetails.TicksAtLastUpdate) / 10000000 > RefreshThresholdSec)
         {
             // Its been long enough for us to update the room data or the data doesn't match our Id.
             // First reset any data we already had.
@@ -22,6 +24,9 @@ public class RoomDataFetcher : MonoBehaviour {
             {
                 roomEvent.Reset();
             }
+            LiveDataCanvas.enabled = false;
+            LoadingCanvas.enabled = true;
+
             ExchangeClient.GetRoomDetailsByRoomAddress(RoomDetails.Address, RoomDetails);
             }
         else

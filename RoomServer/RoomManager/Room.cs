@@ -15,7 +15,7 @@ namespace RoomManager
         public string Address { get; set; }
         public List<Event> Events { get; set; } = new List<Event>();
         public DateTime LastUpdate { get; set; } = new DateTime();
-        public int Temperature { get; set; } = 0;
-        public int Humidity { get; set; } = 0;
+        public double Temperature { get; set; } = 0;
+        public double Humidity { get; set; } = 0;
     }
 }

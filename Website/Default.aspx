@@ -12,7 +12,7 @@
                     runat="server" 
                     OnSelectedIndexChanged="DdlLocations_SelectedIndexChanged"
                     AutoPostBack="True"
-                    Width="200px"/>
+                    Width="200px" Enabled="False"/>
                 <asp:Label Text="Room " runat="server"></asp:Label>
                 <asp:DropDownList
                     ID="ddlRooms"

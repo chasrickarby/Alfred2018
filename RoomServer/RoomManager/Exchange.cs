@@ -7,6 +7,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using Microsoft.Exchange.WebServices.Data;
 
@@ -20,6 +22,11 @@ namespace RoomManager
         private readonly ExchangeVersion exchangeVersion = ExchangeVersion.Exchange2010;
         private const string roomFilter = "";
         private const string addressDomain = "@ptc.com";
+        private const string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Alfred;Persist Security Info=True;User ID=Alfred;Password=The1andonly!";
+
+        public Exchange()
+        {
+        }
 
         public IEnumerable<Room> GetAllRoomsDetails()
         {
@@ -32,7 +39,7 @@ namespace RoomManager
             for (int i = 0; i < rooms.Length; i++)
             {
                 GetRoomAppointments(ref rooms[i], start, end);
-                GetRoomComfortData(ref rooms[i]);
+                GetRoomWeather(ref rooms[i]);
             }
 
             return rooms;
@@ -42,10 +49,11 @@ namespace RoomManager
         {
             var room = new Room
             {
-                Address = ValidateRoomAddress(roomAddress)
-        };
+                Address = ValidateRoomAddress(roomAddress),
+                LastUpdate = DateTime.Now
+            };
             GetRoomAppointments(ref room, start, end);
-            GetRoomComfortData(ref room);
+            GetRoomWeather(ref room);
             return room;
         }
 
@@ -97,7 +105,7 @@ namespace RoomManager
             }
         }
 
-        public static string ValidateRoomAddress(string roomAddress)
+        public string ValidateRoomAddress(string roomAddress)
         {
             if (!roomAddress.EndsWith(addressDomain))
             {
@@ -157,17 +165,36 @@ namespace RoomManager
             }
         }
 
-        private void GetRoomComfortData(ref Room room)
+        private void GetRoomWeather(ref Room room)
         {
-            // GET data from REST server
-            room.Temperature = 68;
-            room.Humidity = 42;
+            SqlDataReader reader;
+            var query = $"SELECT * FROM dbo.RoomWeather WHERE name='{room.Address}'";
+            using (var conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    System.Diagnostics.Debug.WriteLine($"Getting room weather: {room.Address}");
+                    conn.Open();
+                    reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        room.Temperature = double.Parse(reader["temperature"].ToString());
+                        room.Humidity = double.Parse(reader["humidity"].ToString());
+                    }
+                    conn.Close();
+                }
+            }
         }
 
         private IEnumerable<Room> GetAllRooms(string roomFilter)
         {
             var roomsList = GetOrganizationRoomsList().Where(x => x.Name.Contains(roomFilter));
-            return GetRoomsFromRoomsList(roomsList).Distinct();
+            var rooms = GetRoomsFromRoomsList(roomsList).Distinct().ToArray();
+            for (int i = 0; i < rooms.Count(); i++)
+            {
+                GetRoomWeather(ref rooms[i]);
+            }
+            return rooms;
         }
 
         private EmailAddressCollection GetOrganizationRoomsList()
@@ -199,7 +226,8 @@ namespace RoomManager
                         rooms.Add(new Room
                         {
                             Name = item.Name,
-                            Address = item.Address
+                            Address = item.Address,
+                            LastUpdate = DateTime.Now
                         });
                     }
                 });

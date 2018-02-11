@@ -300,6 +300,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AlfredLauncher.cs" />
     <Compile Include="Assets\Scripts\CoroutineWithData.cs" />
     <Compile Include="Assets\Scripts\ExchangeRoomInfoCollection.cs" />
     <Compile Include="Assets\Scripts\ImageTargetManager.cs" />
@@ -310,6 +311,8 @@
     <Compile Include="Assets\Scripts\RoomDataFetcher.cs" />
     <Compile Include="Assets\Scripts\RoomTrackableEventHandler.cs" />
     <Compile Include="Assets\Scripts\RoomWithEventData.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\BoolReference.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\BoolVariable.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\GameEvent.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\GameEventListener.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\IntReference.cs" />
@@ -321,7 +324,6 @@
     <Compile Include="Assets\Scripts\ScriptableObjects\RoomEvent.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\StringReference.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\StringVariable.cs" />
-    <Compile Include="Assets\Scripts\TestScript.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultInitializationErrorHandler.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultTrackableEventHandler.cs" />
   </ItemGroup>
