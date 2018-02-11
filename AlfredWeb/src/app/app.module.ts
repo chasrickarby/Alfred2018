@@ -11,6 +11,8 @@ import { ScheduleViewComponent } from './components/schedule-view/schedule-view.
 import { RoomSelectorComponent } from './components/room-selector/room-selector.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AddMeetingCompComponent } from './components/add-meeting-comp/add-meeting-comp.component';
+import { MatInputModule } from '@angular/material';
 
 
 const appRoutes: Routes = [
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
     CalendarViewComponent,
     RoomDetailComponent,
     ScheduleViewComponent,
-    RoomSelectorComponent
+    RoomSelectorComponent,
+    AddMeetingCompComponent
   ],
   imports: [
     HttpModule,
@@ -41,10 +44,11 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
+    MatInputModule,
     FlexLayoutModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     )
   ],
   providers: [],

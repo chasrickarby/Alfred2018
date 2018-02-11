@@ -1,25 +1,35 @@
-<div *ngIf="isLoaded" class="container" fxLayout="row" fxLayoutWrap>
-  <div fxFlex="10" fxLayout="column" fxLayoutWrap>
-    <div class = "cell headRow" fxLayoutAlign="center center" fxFlex="none"></div>
-    <div fxLayout="column">
-        <div class = "cell timeRow timeSell" fxLayoutAlign="center center" FxFill *ngFor="let h of timeSlots">{{h}}</div>
+<div fxLayout="row">
+  <div *ngIf="isLoaded" class="container" fxLayout="row" fxLayoutWrap fxFlex>
+    <div fxFlex="10" fxLayout="column" fxLayoutWrap>
+      <div class = "cell headRow" fxLayoutAlign="center center" fxFlex="none"></div>
+      <div fxLayout="column">
+          <div class = "cell timeRow timeSell" fxLayoutAlign="center center" FxFill *ngFor="let h of timeSlotsDisplay">{{h}}</div>
+      </div>
+    </div>
+
+    <div fxFlex="90/7" fxLayout="column" *ngFor="let day of week.days">
+      <div class = "cell headRow" fxLayout="column" >
+        <div class = "titleDay" fxLayoutAlign="start center"><div>{{day.GetDay()}}</div></div>
+        <div class = "titleDate" fxLayoutAlign="center center">{{day.GetDate()}}</div>
+      </div>
+      <div
+        fxLayoutAlign="center center"
+        *ngFor="let slot of day.timeSlots; let i = index"
+        [ngClass]="{'slot15min': i%4==0,'slot30min': i%4==1,'slot45min': i%4==2,'slot60min': i%4==3, 'meeting':!slot.isFree()}"
+        (click)="AddMeeting(slot)"
+        >
+      </div>
     </div>
   </div>
 
-  <div fxFlex="90/7" fxLayout="column" *ngFor="let day of week.days">
-    <div class = "cell headRow" fxLayout="column" >
-      <div class = "titleDay" fxLayoutAlign="start center"><div>{{day.GetDay()}}</div></div>
-      <div class = "titleDate" fxLayoutAlign="center center">{{day.GetDate()}}</div>
-    </div>
-    <div
-      fxLayoutAlign="center center"
-      *ngFor="let slot of day.timeSlots; let i = index"
-      [ngClass]="{'slot15min': i%4==0,'slot30min': i%4==1,'slot45min': i%4==2,'slot60min': i%4==3, 'meeting':!slot.isFree()}"
-      >
-    </div>
-  </div>
+  <add-meeting fxFlex="30" *ngIf="isAddMeeting.value" 
+  [startHour] = "startHour" 
+  [endHour] = "endHour" 
+  [(startDateLink)] = "selectedTimeSlot.date" 
+  [(isAddMeeting)] = "isAddMeeting"
+  [(roomAddress)] = "roomAddress">
+  </add-meeting>
 </div>
-
 <div *ngIf="!isLoaded" class="container" fxLayoutAlign="center center" fxLayoutWrap>
-  <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner>
 </div>
