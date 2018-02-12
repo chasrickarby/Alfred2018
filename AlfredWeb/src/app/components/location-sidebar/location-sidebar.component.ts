@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class LocationSidebarComponent implements OnInit {
 
-  _locations: any = "loading...";
+  _locations: any = ["loading..."];
 
   selectedLocation: any;
 

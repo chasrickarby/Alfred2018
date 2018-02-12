@@ -13,7 +13,7 @@ export class AppComponent {
   allRoomList: any = null;
   host = 'http://alfred-hack.eastus.cloudapp.azure.com';
   selectedLocation:String = "POR";
-  locations: any = "Loading...";
+  locations: any = ["Loading..."];
   activeSpinner: boolean = true;
 
 
