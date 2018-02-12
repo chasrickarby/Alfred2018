@@ -13,6 +13,8 @@ import { RoomSelectorComponent } from './components/room-selector/room-selector.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationPickerComponent } from './components/location-picker/location-picker.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AddMeetingCompComponent } from './components/add-meeting-comp/add-meeting-comp.component';
+import { MatInputModule } from '@angular/material';
 import { SpinnerService } from './loading-spinner.service';
 
 const appRoutes: Routes = [
@@ -34,6 +36,7 @@ const appRoutes: Routes = [
     RoomDetailComponent,
     ScheduleViewComponent,
     RoomSelectorComponent,
+    AddMeetingCompComponent,
     LocationPickerComponent
   ],
   imports: [
@@ -47,10 +50,11 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
+    MatInputModule,
     FlexLayoutModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     )
   ],
   providers: [ SpinnerService ],

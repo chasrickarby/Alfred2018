@@ -4,6 +4,7 @@ import { MatList, MatListItem } from '@angular/material';
 import { Http, Response, Headers } from '@angular/http'
 import { ActivatedRoute } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AddMeetingCompComponent } from '../add-meeting-comp/add-meeting-comp.component';
 
 @Component({
   selector: 'schedule-view',
@@ -19,33 +20,32 @@ export class ScheduleViewComponent implements OnInit {
   startDate:Date = null;
   host = 'http://alfred-hack.eastus.cloudapp.azure.com';
 
-  timeSlots:Array<String>=new Array<String>();
+  timeSlotsDisplay:Array<String>=new Array<String>();
   startHour = 6;
-  endHour = 18;
+  endHour = 21;
   week = null;
 
   isLoaded:Boolean = false;
+  isAddMeeting = {value:false};
+  selectedTimeSlot:TimeSlot = null;
     
   constructor(private _http: Http, private route: ActivatedRoute ) {
-    this.route.params.subscribe( params => {
-      console.log(params)
-      this.roomAddress = params.id;
-     });
-
     if (!this.startDate){
       this.startDate = new Date();
     }
 
-    for (let h = this.startHour; h <= this.endHour; h++)
-        {
-        this.timeSlots.push(h+":00");
-        }
+    for (let h = this.startHour; h <= this.endHour; h++){
+    this.timeSlotsDisplay.push(h+":00");
+    }
 
-    this.getRoomSchedule(this.roomAddress, ()=>{
-      this.MakeWeek();
-      this.isLoaded = true;
-    });
-
+    this.route.params.subscribe( params => {
+      console.log(params)
+      this.roomAddress = params.id;
+      this.getRoomSchedule(this.roomAddress, ()=>{
+        this.MakeWeek();
+        this.isLoaded = true;
+      });
+     });
   }
   
   ngOnInit() {
@@ -72,6 +72,11 @@ export class ScheduleViewComponent implements OnInit {
       ));
     }
     this.week.days[0].GetTimeSlots();
+  }
+
+  AddMeeting(slot:TimeSlot):void{
+    this.isAddMeeting.value = true;
+    this.selectedTimeSlot = slot;
   }
 }
 
@@ -130,7 +135,7 @@ class Day{
     this.start = new Date(d);
     this.start.setHours(6);
     this.end = new Date(d);
-    this.end.setHours(20);
+    this.end.setHours(21);
     this.timeSlots = new Array<TimeSlot>();
     this.meetings = new Array<Meeting>();
   }
@@ -153,7 +158,7 @@ class Day{
           meeting = this.meetings[i];
         }
       }
-      this.timeSlots.push(new TimeSlot(d, meeting));
+      this.timeSlots.push(new TimeSlot(new Date(d), meeting));
     }
     return this.timeSlots;
   }
