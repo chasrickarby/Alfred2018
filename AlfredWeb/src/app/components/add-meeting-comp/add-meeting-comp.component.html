@@ -1,6 +1,9 @@
 <div fxLayout="column" class="container" fxLayoutAlign="start stretch">
-  <div fxFlex="15">Add Meeting</div>
-  <div fxFlex="75" class="content">
+  <div fxFlex="15" fxLayout="row">
+    <p fxFlex="90">Add Meeting</p>
+    <button mat-button fxFlex="10" (click)="Close()">X</button>
+  </div>
+  <div fxFlex="75" fxLayout="column" class="content">
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Meeting subject" [(value)]="meetingSubject">
     </mat-form-field>

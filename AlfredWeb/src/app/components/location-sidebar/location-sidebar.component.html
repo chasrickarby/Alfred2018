@@ -4,15 +4,13 @@
     </mat-sidenav>
   
     <mat-sidenav-content>
-      <div id="hamburger-div" fxLayout="row">
-        <button class="hamburger-button" (click)="sidenav.toggle()"></button>
-      </div>
-
       <div id="mainview-div" fxFlex>
-        <h1>Alfred</h1>
-        <h2>Rooms</h2>
-
-        <div fxHide fxShow.xs="true">
+        <div class="header"fxLayout="row" fxLayoutAlign="start center">
+          <button class="hamburger-button" (click)="sidenav.toggle()"></button>
+          <div>Alfred</div>
+        </div>
+        
+        <div fxHide fxShow.xs="true" fxLayout="row">
           <room-selector [rooms]="roomList"></room-selector>
         </div>
 

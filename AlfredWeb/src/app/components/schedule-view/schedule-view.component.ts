@@ -34,7 +34,7 @@ export class ScheduleViewComponent implements OnInit {
       this.startDate = new Date();
     }
 
-    for (let h = this.startHour; h <= this.endHour; h++){
+    for (let h = this.startHour; h < this.endHour; h++){
     this.timeSlotsDisplay.push(h+":00");
     }
 
@@ -57,7 +57,8 @@ export class ScheduleViewComponent implements OnInit {
                 .map((res: Response) => res.json())
                 .subscribe(data => {
                   this.roomInfo = data;
-                  console.log("Room Info: " + this.roomInfo);
+                  console.log("Room info");
+                  console.log(this.roomInfo);
                   callback()
                 })
   }

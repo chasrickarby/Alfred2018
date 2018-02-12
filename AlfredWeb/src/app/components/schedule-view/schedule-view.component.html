@@ -1,6 +1,11 @@
-<div fxLayout="row">
-  <div *ngIf="isLoaded" class="container" fxLayout="row" fxLayoutWrap fxFlex>
-    <div fxFlex="10" fxLayout="column" fxLayoutWrap>
+<div fxLayout="column" *ngIf="isLoaded">
+    <div class = "roomCondition" fxFlex="10" fxLayout="row" fxLayout.xs="column" >
+        <div fxFlex="33" fxLayoutAlign="center none" fxLayoutAlign.xs="start none">Humidity: {{roomInfo.Humidity}}</div>
+        <div fxFlex="33" fxLayoutAlign="center none" fxLayoutAlign.xs="start none">Temperature: {{roomInfo.Temperature}}F</div>
+        <div fxFlex="33" fxLayoutAlign="center none" fxLayoutAlign.xs="start none">Motion: {{roomInfo.Motion}}</div>
+      </div>
+  <div class="container" fxFlex="90" fxLayout="row" fxLayoutWrap *ngIf="!isAddMeeting.value">
+    <div fxFlex="10" fxFlex.xs="25" fxLayout="column" fxLayoutWrap>
       <div class = "cell headRow" fxLayoutAlign="center center" fxFlex="none"></div>
       <div fxLayout="column">
           <div class = "cell timeRow timeSell" fxLayoutAlign="center center" FxFill *ngFor="let h of timeSlotsDisplay">{{h}}</div>
@@ -21,8 +26,8 @@
       </div>
     </div>
   </div>
-
-  <add-meeting fxFlex="30" *ngIf="isAddMeeting.value" 
+  
+  <add-meeting fxFlex="75" fxFlex.xs="100" *ngIf="isAddMeeting.value" 
   [startHour] = "startHour" 
   [endHour] = "endHour" 
   [(startDateLink)] = "selectedTimeSlot.date" 
