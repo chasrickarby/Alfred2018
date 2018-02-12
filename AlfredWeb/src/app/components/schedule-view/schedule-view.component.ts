@@ -29,7 +29,7 @@ export class ScheduleViewComponent implements OnInit {
   isAddMeeting = {value:false};
   selectedTimeSlot:TimeSlot = null;
     
-  constructor(private _http: Http, private route: ActivatedRoute ) {
+  constructor(private _http: Http, private route: ActivatedRoute) {
     if (!this.startDate){
       this.startDate = new Date();
     }

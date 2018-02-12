@@ -29,6 +29,19 @@ export class CalendarViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("URL: " + this.router.url);
+    if(this.router.url.includes("/rooms?room=")){
+      console.log("Replace and redirect!");
+      var redirect = this.router.url;
+      redirect = redirect.replace("/rooms?room=", "");
+      this.router.navigate(['rooms', redirect]);
+    }
+    // this.route.queryParams.subscribe(params=> {
+    //   if(params['room'] != ""){
+    //     console.log("REDIRECT");
+    //     this.router.navigate(['rooms', params['room']]);
+    //   }
+    // })
   }
 
   loadRoomComponent(roomAddress){
