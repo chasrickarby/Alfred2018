@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule} from '@angular/material/grid-list';
 import { MatList, MatListItem } from '@angular/material';
+import { Http, Response, Headers } from '@angular/http'
+import { ActivatedRoute } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AddMeetingCompComponent } from '../add-meeting-comp/add-meeting-comp.component';
 
 @Component({
   selector: 'schedule-view',
@@ -10,32 +14,56 @@ import { MatList, MatListItem } from '@angular/material';
 
 
 export class ScheduleViewComponent implements OnInit {
-  roomAddress: String = "POR-cr6@ptc.com";
+  roomAddress: String;
   roomInfo;
 
   startDate:Date = null;
-  host = 'http://localhost';
+  host = 'http://alfred-hack.eastus.cloudapp.azure.com';
 
-  timeSlots:Array<String>=new Array<String>();
+  timeSlotsDisplay:Array<String>=new Array<String>();
   startHour = 6;
-  endHour = 18;
+  endHour = 21;
   week = null;
+
+  isLoaded:Boolean = false;
+  isAddMeeting = {value:false};
+  selectedTimeSlot:TimeSlot = null;
     
   constructor(private _http: Http, private route: ActivatedRoute ) {
-    this.route.params.subscribe( params => {
-      console.log(params)
-      this.roomAddress = params.id;
-     });
     if (!this.startDate){
       this.startDate = new Date();
     }
 
-    for (let h = this.startHour; h <= this.endHour; h++)
-        {
-        this.timeSlots.push(h+":00");
-        }
+    for (let h = this.startHour; h < this.endHour; h++){
+    this.timeSlotsDisplay.push(h+":00");
+    }
 
-    this.getRoomSchedule(this.roomAddress);
+    this.route.params.subscribe( params => {
+      console.log(params)
+      this.roomAddress = params.id;
+      this.getRoomSchedule(this.roomAddress, ()=>{
+        this.MakeWeek();
+        this.isLoaded = true;
+      });
+     });
+  }
+  
+  ngOnInit() {
+    
+  }
+  
+  getRoomSchedule(roomAddress, callback){
+    this._http.get(this.host + '/RestServer/api/rooms?id=' + roomAddress)
+                .map((res: Response) => res.json())
+                .subscribe(data => {
+                  this.roomInfo = data;
+                  console.log("Room info");
+                  console.log(this.roomInfo);
+                  callback()
+                })
+  }
+
+  MakeWeek(){
     this.week = new Week(this.startDate, "day");
     for (let i = 0; i < this.roomInfo.Events.length; i++){
       this.week.days[0].AddMeeting(new Meeting(
@@ -46,18 +74,10 @@ export class ScheduleViewComponent implements OnInit {
     }
     this.week.days[0].GetTimeSlots();
   }
-  
-  ngOnInit() {
-    
-  }
-  
-  getRoomSchedule(roomAddress){
-    this._http.get(this.host + '/RestServer/api/rooms?id=' + roomAddress)
-                .map((res: Response) => res.json())
-                .subscribe(data => {
-                  this.roomInfo = data;
-                  console.log(this.roomInfo);
-                })
+
+  AddMeeting(slot:TimeSlot):void{
+    this.isAddMeeting.value = true;
+    this.selectedTimeSlot = slot;
   }
 }
 
@@ -116,7 +136,7 @@ class Day{
     this.start = new Date(d);
     this.start.setHours(6);
     this.end = new Date(d);
-    this.end.setHours(20);
+    this.end.setHours(21);
     this.timeSlots = new Array<TimeSlot>();
     this.meetings = new Array<Meeting>();
   }
@@ -139,7 +159,7 @@ class Day{
           meeting = this.meetings[i];
         }
       }
-      this.timeSlots.push(new TimeSlot(d, meeting));
+      this.timeSlots.push(new TimeSlot(new Date(d), meeting));
     }
     return this.timeSlots;
   }

@@ -1,0 +1,26 @@
+<div fxLayout="column" class="container" fxLayoutAlign="start stretch">
+  <div fxFlex="15" fxLayout="row">
+    <p fxFlex="90">Add Meeting</p>
+    <button mat-button fxFlex="10" (click)="Close()">X</button>
+  </div>
+  <div fxFlex="75" fxLayout="column" class="content">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Meeting subject" [(value)]="meetingSubject">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Start time" [(value)]="selectedStartTime" >
+        <mat-option *ngFor="let slot of daySlots" [value]="slot">
+          {{ slot.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="End time" [(value)]="selectedEndTime">
+          <mat-option *ngFor="let slot of endTimeDaySlots" [value]="slot">
+            {{ slot.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  <button mat-raised-button fxFlex="10" (click)="AddMeeting()">Save</button>
+</div>

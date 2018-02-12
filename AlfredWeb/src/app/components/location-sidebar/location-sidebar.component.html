@@ -1,0 +1,30 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+      <location-picker [locations]="_locations" (myEvent)="eventResult($event)"></location-picker>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <div id="mainview-div" fxFlex>
+        <div class="header"fxLayout="row" fxLayoutAlign="start center">
+          <button class="hamburger-button" (click)="sidenav.toggle()"></button>
+          <div>Alfred</div>
+        </div>
+        
+        <div fxHide fxShow.xs="true" fxLayout="row">
+          <room-selector [rooms]="roomList"></room-selector>
+        </div>
+
+        <div fxLayout="row" fxLayoutWrap>
+          <div fxShow fxHide.xs="true" id="calenderView">
+            <calendar-view [rooms]="roomList"></calendar-view>
+          </div>
+    
+          <div id="roomDetail" fxFlex>
+            <a routerLink="/rooms/:id" routerLinkActive="active"></a>
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
