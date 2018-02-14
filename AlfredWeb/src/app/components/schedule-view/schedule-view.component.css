@@ -14,7 +14,7 @@
 }
 
 .timeRow{
-    height: 40px;
+    height: 48px;
 }
 
 .titleDay{
@@ -39,28 +39,29 @@
 }
 .slot15min{
     border-right: #e0e0e0 1px solid;
-    height: 10px;
 }
 
 .slot30min{
     border-right: #e0e0e0 1px solid;
     border-bottom: #e0e0e0 1px dashed;
-    height: 10px;
-
 }
 .slot45min{
     border-right: #e0e0e0 1px solid;
-    height: 10px;
 }
 .slot60min{
     border-right: #e0e0e0 1px solid;
     border-bottom: #e0e0e0 1px solid;
-    height: 10px;
 }
 
 .meeting{
-    background-color:#2196F3;
+    padding-top: 1px;
 }
+.meeting div{
+    padding-top: 2px;
+    padding-left: 10px;
+    border-radius: 3px;
+}
+
 .roomCondition{
     margin-bottom: 10px;
 }

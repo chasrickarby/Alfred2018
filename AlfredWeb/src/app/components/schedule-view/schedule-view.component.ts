@@ -98,11 +98,15 @@ class Meeting{
   color:String;
   static colors:Array<String> = [
     "#2196F3",
-    "#E91E63",
     "#4CAF50",
     "#FFC107",
     "#FF9800",
-    "#8BC34A"
+    "#8BC34A",
+    "#29B6F6",
+    "#7CB342",
+    "#F9A825",
+    "#F48FB1",
+    "#673AB7"
   ];
 
   constructor(name, start, end){
@@ -117,11 +121,16 @@ class Meeting{
   PeekColor():String{
     return Meeting.colors[Math.floor(Math.random()*Meeting.colors.length)];
   }
+  // Get meeting duration in 
+  GetDuration():number{
+    return (this.end.getTime() - this.start.getTime())/60000;
+  }
 }
 
 class TimeSlot{
   date:Date;
-  meeting:Meeting;
+  private meeting:Meeting;
+  private cssClasses = ["slot15min", "slot30min", "slot45min", "slot60min"];
 
   constructor (date:Date, meeting:Meeting=null){
     this.date=date;
@@ -129,6 +138,31 @@ class TimeSlot{
   }
   isFree():Boolean{
     return this.meeting==null;
+  }
+  GetDuration():number{
+    if(this.meeting){
+      return this.meeting.GetDuration();
+    }
+    return 15;
+  }
+  GetColor():String{
+    if(this.meeting){
+      return this.meeting.color;
+    }
+    return "";
+  }
+  GetLabel():String{
+    if(this.meeting){
+      return this.meeting.name;
+    }
+    return "";
+  }
+  GetCSSClass():String{
+    if(this.meeting){
+      return "meeting"
+    }else{
+      return this.cssClasses[this.date.getMinutes()/15];
+    }
   }
 }
 
@@ -162,11 +196,15 @@ class Day{
   }
 
   GetTimeSlots(){
-    for (let d = this.start; d <= this.end; d.setMinutes(d.getMinutes() + 15)){
+    let slotDuration = 15; // Minutes
+    for (let d = this.start; d <= this.end; d.setMinutes(d.getMinutes() + slotDuration)){
       let meeting = null;
+      slotDuration = 15;
       for(let i = 0; i < this.meetings.length; i++){
         if(this.meetings[i].isInMeeting(d)){
           meeting = this.meetings[i];
+          slotDuration = meeting.GetDuration();
+          break;
         }
       }
       this.timeSlots.push(new TimeSlot(new Date(d), meeting));
