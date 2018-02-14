@@ -22,6 +22,9 @@
                     Width="200px"/>
                 <asp:Label ID="lblLastUpdateTime" runat="server" Text="update time"></asp:Label>
             </td>
+            <td align="middle">
+                <asp:Label ID="lblMotion" runat="server" Text="Unoccupied" ForeColor="Green" Font-Bold="true"></asp:Label>
+            </td>
             <td align="right">
                 <asp:Label ID="lblTemp" runat="server" Text="Temp"></asp:Label>
                 /
@@ -34,7 +37,7 @@
     <div>
         <DayPilot:DayPilotCalendar
             runat="server"
-            id="DayPilotCalendar1">
+            id="DayPilotCalendar1" style="top: 0px; left: 0px">
         </DayPilot:DayPilotCalendar>
     </div>    
 </asp:Content>

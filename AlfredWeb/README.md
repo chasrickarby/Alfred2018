@@ -1,5 +1,9 @@
 # AlfredWeb
 
+## Install prerequisites
+1) Download and install NodeJS https://nodejs.org/en/
+2) Run command 'npm install' from project directory which will create the node_modules folder.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
 ## Development server
