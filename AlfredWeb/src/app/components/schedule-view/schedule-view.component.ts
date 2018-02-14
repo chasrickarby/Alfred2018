@@ -20,7 +20,7 @@ export class ScheduleViewComponent implements OnInit {
   startDate:Date = null;
   host = 'http://alfred-hack.eastus.cloudapp.azure.com';
 
-  timeSlotsDisplay:Array<String>=new Array<String>();
+  timeSlotsLabels:Array<String>=new Array<String>();
   startHour = 6;
   endHour = 21;
   week = null;
@@ -35,7 +35,17 @@ export class ScheduleViewComponent implements OnInit {
     }
 
     for (let h = this.startHour; h < this.endHour; h++){
-    this.timeSlotsDisplay.push(h+":00");
+      let label:String = "";
+      if (h<12){
+        label = h+"AM";
+      }
+      if(h==12){
+        label = h+"PM";
+      }
+      if(h>12){
+        label = (h-12) + "PM";
+      }
+    this.timeSlotsLabels.push(label);
     }
 
     this.route.params.subscribe( params => {
