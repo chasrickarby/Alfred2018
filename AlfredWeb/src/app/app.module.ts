@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { MatList, MatListItem, MatListModule, MatButtonModule, MatSelectModule, MatOptionModule, MatSidenavModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { AppComponent } from './app.component';
@@ -16,6 +17,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AddMeetingCompComponent } from './components/add-meeting-comp/add-meeting-comp.component';
 import { MatInputModule } from '@angular/material';
 import { SpinnerService } from './loading-spinner.service';
+
+import {AlfredApiService} from './services/alfred-api.service'
 
 const appRoutes: Routes = [
   {
@@ -40,6 +43,7 @@ const appRoutes: Routes = [
     LocationPickerComponent
   ],
   imports: [
+    FormsModule,
     HttpModule,
     BrowserModule,
     MatListModule,
@@ -57,7 +61,7 @@ const appRoutes: Routes = [
       { enableTracing: false } // <-- debugging purposes only
     )
   ],
-  providers: [ SpinnerService ],
+  providers: [ SpinnerService, AlfredApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

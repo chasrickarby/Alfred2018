@@ -7,6 +7,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AddMeetingCompComponent } from '../add-meeting-comp/add-meeting-comp.component';
 
 import {Meeting, TimeSlot, Day, Week} from '../shared/calendar'
+import {AlfredApiService} from '../../services/alfred-api.service'
 
 @Component({
   selector: 'schedule-view',
@@ -20,7 +21,6 @@ export class ScheduleViewComponent implements OnInit {
   roomInfo;
 
   startDate:Date = null;
-  host = 'http://alfred-hack.eastus.cloudapp.azure.com';
 
   timeSlotsLabels:Array<String>=new Array<String>();
   startHour = 6;
@@ -31,7 +31,7 @@ export class ScheduleViewComponent implements OnInit {
   isAddMeeting = {value:false};
   selectedTimeSlot:TimeSlot = null;
     
-  constructor(private _http: Http, private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private api: AlfredApiService) {
     if (!this.startDate){
       this.startDate = new Date();
     }
@@ -53,7 +53,8 @@ export class ScheduleViewComponent implements OnInit {
     this.route.params.subscribe( params => {
       console.log(params)
       this.roomAddress = params.id;
-      this.getRoomSchedule(this.roomAddress, ()=>{
+      this.api.GetRoomInformation(this.roomAddress, (roomInfo)=>{
+        this.roomInfo = roomInfo;
         this.MakeWeek();
         this.isLoaded = true;
       });
@@ -62,17 +63,6 @@ export class ScheduleViewComponent implements OnInit {
   
   ngOnInit() {
     
-  }
-  
-  getRoomSchedule(roomAddress, callback){
-    this._http.get(this.host + '/RestServer/api/rooms?id=' + roomAddress)
-                .map((res: Response) => res.json())
-                .subscribe(data => {
-                  this.roomInfo = data;
-                  console.log("Room info");
-                  console.log(this.roomInfo);
-                  callback()
-                })
   }
 
   MakeWeek(){
@@ -92,7 +82,9 @@ export class ScheduleViewComponent implements OnInit {
     this.selectedTimeSlot = slot;
   }
   OnAddMeeting(meeting:Meeting){
-    this.week.day[0].AddMeeting(meeting);
+    console.log("Event: OnAddMeeting");
+    console.log(meeting);
+    this.week.days[0].AddMeeting(meeting);
     this.week.days[0].GetTimeSlots();
   }
 }
