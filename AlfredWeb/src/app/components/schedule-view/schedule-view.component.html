@@ -37,7 +37,8 @@
   [endHour] = "endHour" 
   [(startDateLink)] = "selectedTimeSlot.date" 
   [(isAddMeeting)] = "isAddMeeting"
-  [(roomAddress)] = "roomAddress">
+  [(roomAddress)] = "roomAddress"
+  (onCreate)="OnAddMeeting">
   </add-meeting>
 </div>
 <div *ngIf="!isLoaded" class="container" fxLayoutAlign="center center" fxLayoutWrap>

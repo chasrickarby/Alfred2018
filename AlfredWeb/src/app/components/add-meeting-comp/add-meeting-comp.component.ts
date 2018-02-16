@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { Http, Response, Headers } from '@angular/http';
+
+import {Meeting} from '../shared/calendar'
 
 @Component({
   selector: 'add-meeting',
@@ -36,6 +38,8 @@ export class AddMeetingCompComponent implements OnInit {
   day:Date;
 
   host = 'http://alfred-hack.eastus.cloudapp.azure.com';
+
+  @Output() OnAddMeeting = new EventEmitter();
 
   constructor(private _http: Http) {
   }
@@ -74,6 +78,7 @@ export class AddMeetingCompComponent implements OnInit {
       return h == slot.hour && m == slot.minute;
     });
   }
+
   AddMeeting(){
     let meetingStart = new Date(this.startDate);
     meetingStart.setHours(this.selectedStartTime.hour, this.selectedStartTime.minute,0,0);
@@ -118,6 +123,7 @@ export class AddMeetingCompComponent implements OnInit {
     .map((res: Response) => res.json())
     .subscribe(data => {
       this.Close();
+      this.OnAddMeeting.emit(new Meeting (this.meetingSubject, meetingStart, meetingEnd));
     })
     
   }
