@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http'
 import 'rxjs/add/operator/map'
 import { SpinnerService } from './loading-spinner.service';
+import { AlfredApiService } from './services/alfred-api.service'
 
 @Component({
   selector: 'app-root',
@@ -11,13 +12,12 @@ import { SpinnerService } from './loading-spinner.service';
 export class AppComponent {
   roomList: any = null;
   allRoomList: any = null;
-  host = 'http://alfred-hack.eastus.cloudapp.azure.com';
   selectedLocation:String = "POR";
   locations: any = ["Loading..."];
   activeSpinner: boolean = true;
 
 
-  constructor(private _http: Http, private spinnerService : SpinnerService){
+  constructor(private api: AlfredApiService, private spinnerService : SpinnerService){
     this.spinnerService.spinnerActive.subscribe(active => 
     this.toggleSpinner(active));
     console.log("App " + this.locations);    
@@ -35,11 +35,8 @@ export class AppComponent {
   private getRooms(callback){
     console.log("Getting rooms from app level.");
     this.activeSpinner = true;
-    return this._http.get(this.host + '/RestServer/api/rooms')
-                .map((res: Response) => res.json())
-                .subscribe(data => {
-                  this.allRoomList = data;
-                  console.log(this.allRoomList);
+    return this.api.GetRooms((allRoomList)=>{
+                  this.allRoomList = allRoomList;
                   this.GetAllLocations();
                   callback();
                   this.activeSpinner = false;
@@ -68,10 +65,8 @@ export class AppComponent {
   updateLocationSetting(location){
     console.log("Updating rooms...");
     this.selectedLocation = location;
-    this.getRooms(()=>{
-      this.roomList = this.GetLocationRooms(this.selectedLocation);
-      console.log("Rooms updated.");
-    });
+    this.roomList = this.GetLocationRooms(this.selectedLocation);
+    console.log("Rooms updated.");
   }
 
 }

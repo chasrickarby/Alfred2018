@@ -62,4 +62,14 @@ export class AlfredApiService {
       callback();
     })
   }
+
+  GetRooms(callback){
+    return this._http.get(this.host + '/RestServer/api/rooms')
+                .map((res: Response) => res.json())
+                .subscribe(allRoomList => {
+                  console.log(allRoomList);
+                  callback(allRoomList);
+                })
+  }
+
 }
