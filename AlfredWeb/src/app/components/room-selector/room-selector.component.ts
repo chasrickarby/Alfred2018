@@ -10,11 +10,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 export class RoomSelectorComponent implements OnInit {
   @Input() rooms: any;
 
-  constructor(
-    private router: Router) 
-    {
+  constructor(private router: Router){
       console.log("CTOR Room Selector")
-      console.log("Getting Rooms");
     }
 
   ngOnInit() {
