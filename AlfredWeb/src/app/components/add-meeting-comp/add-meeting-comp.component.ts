@@ -132,9 +132,16 @@ class DaySlot{
   minute
   label:String
 
-  constructor(hour:Number, minute:Number){
+  constructor(hour:number, minute:number){
     this.hour = hour;
     this.minute = minute;
+    var isPm = false;
+    if(hour >= 12){
+      isPm = true;
+      if(hour > 12){
+        hour %= 12;
+      }
+    }
     let h = hour.toString()
     if(h.length == 1){
       h = "0" + h;
@@ -143,6 +150,10 @@ class DaySlot{
     if(minute == 0){
       m = "00";
     }
-    this.label = h+":"+m;
+    if(!isPm){
+      this.label = h+":"+m+" AM";
+    }else{
+      this.label = h+":"+m+" PM";
+    }
   }
 }
