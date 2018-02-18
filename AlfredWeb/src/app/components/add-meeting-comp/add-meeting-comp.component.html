@@ -5,7 +5,7 @@
   </div>
   <div fxFlex="75" fxLayout="column" class="content">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Meeting subject" [(value)]="meetingSubject">
+      <input matInput placeholder="Meeting subject" [(ngModel)]="meetingSubject">
     </mat-form-field>
     <mat-form-field>
       <mat-select placeholder="Start time" [(value)]="selectedStartTime" >

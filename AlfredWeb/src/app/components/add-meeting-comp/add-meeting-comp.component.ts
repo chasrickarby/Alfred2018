@@ -1,8 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { Http, Response, Headers } from '@angular/http';
+
+import {Meeting} from '../shared/calendar'
+import {AlfredApiService} from '../../services/alfred-api.service'
+
 
 @Component({
   selector: 'add-meeting',
@@ -31,13 +35,13 @@ export class AddMeetingCompComponent implements OnInit {
   selectedEndTime:DaySlot;
 
   @Input() roomAddress;
-  meetingSubject="";
+  meetingSubject:String="";
 
   day:Date;
 
-  host = 'http://alfred-hack.eastus.cloudapp.azure.com';
+  @Output() OnAddMeeting = new EventEmitter();
 
-  constructor(private _http: Http) {
+  constructor(private api: AlfredApiService) {
   }
 
   ngOnInit() {
@@ -74,6 +78,7 @@ export class AddMeetingCompComponent implements OnInit {
       return h == slot.hour && m == slot.minute;
     });
   }
+
   AddMeeting(){
     let meetingStart = new Date(this.startDate);
     meetingStart.setHours(this.selectedStartTime.hour, this.selectedStartTime.minute,0,0);
@@ -81,45 +86,11 @@ export class AddMeetingCompComponent implements OnInit {
     let meetingEnd = new Date(this.startDate);
     meetingEnd.setHours(this.selectedEndTime.hour, this.selectedEndTime.minute,0,0);
 
-    let monthStr=(meetingStart.getMonth()+1).toString()
-    if(monthStr.length==1){
-      monthStr="0"+monthStr;
-    }
-    let dateStr = meetingStart.getDate().toString()
-    if(dateStr.length==1){
-      dateStr="0"+dateStr;
-    }
-
-    let strData = meetingStart.getFullYear()+"-"+monthStr+"-"+dateStr+"T"
-    let hs = meetingStart.getHours().toString()
-    if(hs.length==1){
-      hs="0"+hs;
-    }
-    let ms = meetingStart.getMinutes().toString()
-    if(ms.length==1){
-      ms="0"+ms;
-    }
-    let meetingStartStr = strData + hs+":"+ms+":00";
-
-    let he = meetingEnd.getHours().toString()
-    if(he.length==1){
-      he="0"+he;
-    }
-    let me = meetingEnd.getMinutes().toString()
-    if(me.length==1){
-      me="0"+me;
-    }
-    let meetingEndStr = strData + he +":"+me+":00";
-    
-    this._http.post(this.host + "/RestServer/api/rooms/CreateMeeting?id="+this.roomAddress.split("@")[0]+
-    "&subject="+this.meetingSubject+
-    "&start="+meetingStartStr+
-    "&end="+meetingEndStr, {})
-    .map((res: Response) => res.json())
-    .subscribe(data => {
+    var newMeeting:Meeting = new Meeting (this.meetingSubject, meetingStart, meetingEnd);
+    this.api.AddMeeting(this.roomAddress, newMeeting, ()=>{
       this.Close();
-    })
-    
+      this.OnAddMeeting.emit(newMeeting);
+    });
   }
 
   Close():void{

@@ -21,11 +21,7 @@ export class CalendarViewComponent implements OnInit {
   private selectedId = 0;
   private route: ActivatedRoute
 
-  constructor(
-    private _http: Http,
-    private router: Router,
-  ){
-    console.log("Getting Rooms");
+  constructor(private _http: Http, private router: Router){
   }
 
   ngOnInit() {

@@ -14,13 +14,13 @@
 }
 
 .timeRow{
-    height: 40px;
+    height: 48px;
 }
 
 .titleDay{
     font-size: small;
     font-family: Roboto,Helvetica,Arial,sans-serif;
-    color: #e0e0e0;
+    color: #494949;
     margin-top: 3px;
     margin-left: 3px;
     margin-bottom: 10px;
@@ -29,38 +29,39 @@
 .titleDate{
     font-size: xx-large;
     font-family: Roboto,Helvetica,Arial,sans-serif;
-    color: #8a8a8a;
+    color: #494949;
 }
 
 .timeSell{
     font-size: medium;
     font-family: Roboto,Helvetica,Arial,sans-serif;
-    color: #8a8a8a;
+    color: #494949;
 }
 .slot15min{
     border-right: #e0e0e0 1px solid;
-    height: 10px;
 }
 
 .slot30min{
     border-right: #e0e0e0 1px solid;
     border-bottom: #e0e0e0 1px dashed;
-    height: 10px;
-
 }
 .slot45min{
     border-right: #e0e0e0 1px solid;
-    height: 10px;
 }
 .slot60min{
     border-right: #e0e0e0 1px solid;
     border-bottom: #e0e0e0 1px solid;
-    height: 10px;
 }
 
 .meeting{
-    background-color:#2196F3;
+    padding-top: 1px;
 }
+.meeting div{
+    padding-top: 2px;
+    padding-left: 10px;
+    border-radius: 3px;
+}
+
 .roomCondition{
     margin-bottom: 10px;
 }

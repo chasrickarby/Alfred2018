@@ -303,6 +303,7 @@
     <Compile Include="Assets\Scripts\AlfredLauncher.cs" />
     <Compile Include="Assets\Scripts\CoroutineWithData.cs" />
     <Compile Include="Assets\Scripts\ExchangeRoomInfoCollection.cs" />
+    <Compile Include="Assets\Scripts\GuiManager.cs" />
     <Compile Include="Assets\Scripts\ImageTargetManager.cs" />
     <Compile Include="Assets\Scripts\ImageTargetRoomDetails.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IExchangeClient.cs" />
