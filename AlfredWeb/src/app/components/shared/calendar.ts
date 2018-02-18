@@ -4,17 +4,10 @@ export class Meeting{
     start:Date;
     end:Date;
     color:String;
+    static colorIteration = 0;
     static colors:Array<String> = [
-      "#2196F3",
-      "#4CAF50",
-      "#FFC107",
-      "#FF9800",
-      "#8BC34A",
-      "#29B6F6",
-      "#7CB342",
-      "#F9A825",
-      "#F48FB1",
-      "#673AB7"
+      "#897E7E",
+      "#3D831E"
     ];
   
     constructor(name, start, end){
@@ -27,6 +20,14 @@ export class Meeting{
       return d >= this.start && d < this.end;
     }
     PeekColor():String{
+      let color:String = Meeting.colors[Meeting.colorIteration];
+      Meeting.colorIteration += 1;
+      if(Meeting.colorIteration >= Meeting.colors.length){
+        Meeting.colorIteration = Meeting.colorIteration - Meeting.colors.length;
+      }
+      return color;
+    }
+    PeekColorRand():String{
       return Meeting.colors[Math.floor(Math.random()*Meeting.colors.length)];
     }
     // Get meeting duration in 
