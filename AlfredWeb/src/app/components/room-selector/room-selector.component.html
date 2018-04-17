@@ -1,0 +1,7 @@
+<mat-form-field>
+    <mat-select placeholder="Conference Room">
+      <mat-option *ngFor="let room of rooms" (click)="loadRoomComponent(room.Address)" [value] = "room.Name">
+          {{room.Name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>

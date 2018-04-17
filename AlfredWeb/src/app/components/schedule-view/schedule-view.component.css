@@ -1,0 +1,67 @@
+.container{
+    background-color:#FFFFFF;
+    border-top: #e0e0e0 1px solid;
+    border-left: #e0e0e0 1px solid;
+}
+
+.cell{
+    border-right: #e0e0e0 1px solid;
+    border-bottom: #e0e0e0 1px solid;
+}
+
+.headRow{
+    height: 80px;
+}
+
+.timeRow{
+    height: 48px;
+}
+
+.titleDay{
+    font-size: small;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    color: #494949;
+    margin-top: 3px;
+    margin-left: 3px;
+    margin-bottom: 10px;
+}
+
+.titleDate{
+    font-size: xx-large;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    color: #494949;
+}
+
+.timeSell{
+    font-size: medium;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    color: #494949;
+}
+.slot15min{
+    border-right: #e0e0e0 1px solid;
+}
+
+.slot30min{
+    border-right: #e0e0e0 1px solid;
+    border-bottom: #e0e0e0 1px dashed;
+}
+.slot45min{
+    border-right: #e0e0e0 1px solid;
+}
+.slot60min{
+    border-right: #e0e0e0 1px solid;
+    border-bottom: #e0e0e0 1px solid;
+}
+
+.meeting{
+    padding-top: 1px;
+}
+.meeting div{
+    padding-top: 2px;
+    padding-left: 10px;
+    border-radius: 3px;
+}
+
+.roomCondition{
+    margin-bottom: 10px;
+}

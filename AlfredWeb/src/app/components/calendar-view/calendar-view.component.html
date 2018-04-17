@@ -1,0 +1,5 @@
+<mat-nav-list role="list">
+  <mat-list-item class = "roomList" *ngFor="let room of rooms" (click)="loadRoomComponent(room.Address)">
+    {{room.Name}}
+  </mat-list-item>
+</mat-nav-list>

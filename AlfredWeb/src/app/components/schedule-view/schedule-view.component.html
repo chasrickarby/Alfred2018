@@ -1,0 +1,46 @@
+<div fxLayout="column" *ngIf="isLoaded">
+  <div class = "roomCondition" fxFlex="10" fxLayout="row" fxLayout.xs="column" >
+        <div fxFlex="33" fxLayoutAlign="center none" fxLayoutAlign.xs="start none">Humidity: {{roomInfo.Humidity}}</div>
+        <div fxFlex="33" fxLayoutAlign="center none" fxLayoutAlign.xs="start none">Temperature: {{roomInfo.Temperature}}F</div>
+        <div fxFlex="33" fxLayoutAlign="center none" fxLayoutAlign.xs="start none">Motion: {{roomInfo.Motion}}</div>
+  </div>
+  <div class="container" fxFlex="90" fxLayout="row" fxLayoutWrap *ngIf="!isAddMeeting.value">
+    <div fxFlex="10" fxFlex.xs="25" fxLayout="column" fxLayoutWrap>
+      <div class = "cell headRow" fxLayoutAlign="center center" fxFlex="none"></div>
+      <div fxLayout="column">
+          <div class = "cell timeRow timeSell" fxLayoutAlign="center center" FxFill *ngFor="let h of timeSlotsLabels">{{h}}</div>
+      </div>
+    </div>
+
+    <div fxFlex="90" fxFlex.xs="75" fxLayout="column" *ngFor="let day of week.days">
+      <div class = "cell headRow" fxLayout="column">
+        <div class = "titleDay" fxLayoutAlign="start center"><div>{{day.GetDay()}}</div></div>
+        <div class = "titleDate" fxLayoutAlign="center center">{{day.GetDate()}}</div>
+      </div>
+      <div
+        fxLayoutAlign="center stretch>"
+        fxLayout="column"
+        *ngFor="let slot of day.timeSlots; let i = index"
+        [ngClass]="slot.GetCSSClass()"
+        (click)="slot.isFree() ? AddMeeting(slot) : null"
+        [ngStyle]="{height: slot.GetDuration()/15 * 12 + 'px'}"
+        >
+        <div fxFlex="100" [ngStyle]="{'background-color':slot.GetColor()}">
+        {{slot.GetLabel()}}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <add-meeting fxFlex="75" fxFlex.xs="100" *ngIf="isAddMeeting.value" 
+  [startHour] = "startHour" 
+  [endHour] = "endHour" 
+  [(startDateLink)] = "selectedTimeSlot.date" 
+  [(isAddMeeting)] = "isAddMeeting"
+  [(roomAddress)] = "roomAddress"
+  (OnAddMeeting)="OnAddMeeting($event)">
+  </add-meeting>
+</div>
+<div *ngIf="!isLoaded" class="container" fxLayoutAlign="center center" fxLayoutWrap>
+    <mat-spinner></mat-spinner>
+</div>
